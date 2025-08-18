@@ -34,6 +34,7 @@ const userSchema = new Schema<IUser>({
   },
 });
 
-// Évite la recréation du modèle en dev
+// Reuse the existing model if it has already been compiled by Mongoose.
+// This prevents the "OverwriteModelError" that can happen during hot-reloading in development.
 export const User: Model<IUser> =
   mongoose.models.User || mongoose.model<IUser>("User", userSchema);
