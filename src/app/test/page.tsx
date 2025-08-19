@@ -7,8 +7,8 @@ export default function HomePage() {
 
   useEffect(() => {
     fetch("/api/health")
-      .then(res => res.json())
-      .then(data => setDbStatus(data.message))
+      .then((res) => res.json())
+      .then((data) => setDbStatus(data.message))
       .catch(() => setDbStatus("❌ Unable to reach server"));
   }, []);
 
