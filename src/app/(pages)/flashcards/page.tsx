@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { IFlashcard } from "../../types/flashcard";
+import { IFlashcard } from "@/types/flashcard";
 
 export default function HomePage() {
   const [flashcards, setFlashcards] = useState<IFlashcard[]>([]);
