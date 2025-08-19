@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IUser } from "../types/user";
+import { IUser } from "../../types/user";
 
 export default function HomePage() {
   const [users, setUsers] = useState<IUser[] | null>(null);
