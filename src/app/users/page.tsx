@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { IUser } from "../types/user";
 
 export default function HomePage() {
-  const [users, setUsers] = useState<IUser | null>(null);
+  const [users, setUsers] = useState<IUser[] | null>(null);
 
   useEffect(() => {
     fetch("/api/users")
@@ -16,13 +16,13 @@ export default function HomePage() {
     <main>
       <h1 className="text-xl">User</h1>
       {!users && <p>No User Found</p>}
-      {users && (
-        <ul>
+      <ul>
+        {users?.map((u) => (
           <li>
-            {users.name} - {users.email}
+            {u.name} - {u.email}
           </li>
-        </ul>
-      )}
+        ))}
+      </ul>
     </main>
   );
 }
