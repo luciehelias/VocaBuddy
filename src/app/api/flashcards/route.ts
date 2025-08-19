@@ -31,6 +31,30 @@ export async function POST(request: Request) {
   }
 }
 
+export async function PATCH(request: Request) {
+  try {
+    const { id, ...updateData } = await request.json();
+    await connectToDatabase();
+    const flashcard = await Flashcard.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    });
+    if (!flashcard) {
+      return NextResponse.json(
+        { error: "Flashcard not found" },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(flashcard);
+  } catch (error) {
+    console.error("Failed to update flashcard:", error);
+    return NextResponse.json(
+      { error: "Failed to update flashcard" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(request: Request) {
   try {
     const { id } = await request.json();

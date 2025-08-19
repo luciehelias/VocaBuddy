@@ -6,6 +6,7 @@ import { IFlashcard } from "../types/flashcard";
 
 export default function HomePage() {
   const [flashcards, setFlashcards] = useState<IFlashcard[]>([]);
+  const [selectedId, setSelectedId] = useState<string>("");
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
 
@@ -35,6 +36,7 @@ export default function HomePage() {
     loadFlashcards();
   };
 
+  // delete a flashcard
   const deleteFlashcard = async (id: string) => {
     const res = await fetch("/api/flashcards", {
       method: "DELETE",
@@ -46,7 +48,34 @@ export default function HomePage() {
       alert(data.error);
       return;
     }
-    alert(data.message);
+    loadFlashcards();
+  };
+
+  // Handle flashcard selection
+  const selectFlashcard = (card: IFlashcard) => {
+    setSelectedId(card._id);
+    setNativeWord(card.nativeWord);
+    setTranslatedWord(card.translatedWord);
+  };
+
+  // Update a flashcard
+  const updateFlashcard = async (
+    id: string,
+    updatedData: Partial<IFlashcard>
+  ) => {
+    const res = await fetch("/api/flashcards", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, ...updatedData }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to update flashcard");
+      return;
+    }
+    setSelectedId("");
+    setNativeWord("");
+    setTranslatedWord("");
     loadFlashcards();
   };
 
@@ -81,6 +110,30 @@ export default function HomePage() {
             {card.nativeWord} → {card.translatedWord}
             <br />
             <button onClick={() => deleteFlashcard(card._id)}>Delete</button>
+            <button onClick={() => selectFlashcard(card)}>Edit</button>
+            <br />
+            {selectedId && (
+              <div style={{ marginTop: "20px" }}>
+                <h2>Edit Flashcard</h2>
+                <input
+                  placeholder="Native Word"
+                  value={nativeWord}
+                  onChange={(e) => setNativeWord(e.target.value)}
+                />
+                <input
+                  placeholder="Translated Word"
+                  value={translatedWord}
+                  onChange={(e) => setTranslatedWord(e.target.value)}
+                />
+                <button
+                  onClick={() =>
+                    updateFlashcard(selectedId, { nativeWord, translatedWord })
+                  }
+                >
+                  Save Changes
+                </button>
+              </div>
+            )}
           </li>
         ))}
       </ul>
