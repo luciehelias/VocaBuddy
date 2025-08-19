@@ -6,7 +6,7 @@ import { IFlashcard } from "../types/flashcard";
 
 export default function HomePage() {
   const [flashcards, setFlashcards] = useState<IFlashcard[]>([]);
-  const [selectedId, setSelectedId] = useState<string>("");
+  const [selectedId, setSelectedId] = useState("");
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
 
@@ -31,6 +31,10 @@ export default function HomePage() {
       }),
     });
     const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Failed to create flashcard");
+      return;
+    }
     setNativeWord("");
     setTranslatedWord("");
     loadFlashcards();
@@ -45,7 +49,7 @@ export default function HomePage() {
     });
     const data = await res.json();
     if (!res.ok) {
-      alert(data.error);
+      alert(data.error || "Failed to delete flashcard");
       return;
     }
     loadFlashcards();
