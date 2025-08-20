@@ -16,7 +16,7 @@ const categories = [
   "Autres",
 ];
 
-const Flashcard = () => {
+const FlashcardForm = () => {
   const { createFlashcard } = useFlashcards();
 
   const [nativeWord, setNativeWord] = useState("");
@@ -27,7 +27,7 @@ const Flashcard = () => {
 
   const handleCreate = () => {
     createFlashcard({
-      userId: "testUserId",
+      userId: "6432f4abc1234567890def12", // Replace with actual user ID
       nativeWord,
       translatedWord,
       targetLanguage: "en",
@@ -71,11 +71,11 @@ const Flashcard = () => {
           />
         )}
       </div>
-      <Button className="border-1" onClick={handleCreate}>
+      <Button className="border-1 bg-emerald-200" onClick={handleCreate}>
         Valider
       </Button>
     </div>
   );
 };
 
-export default Flashcard;
+export default FlashcardForm;

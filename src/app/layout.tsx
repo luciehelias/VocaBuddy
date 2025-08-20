@@ -6,7 +6,6 @@ import { poppins } from "@/fonts/poppins";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Flashcard from "@/components/pages/flashcard/Flashcard";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
@@ -26,7 +25,7 @@ export default function RootLayout({
         <header className="p-4">
           <Header />
         </header>
-        <main>{children}</main>
+        {children}
         <footer className="flex justify-center">
           <Footer />
         </footer>

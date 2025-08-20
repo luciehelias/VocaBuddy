@@ -44,7 +44,7 @@ export const useFlashcards = () => {
     loadFlashcards();
   };
 
-  // Handle flashcard selection
+  // Update a flashcard
   const updateFlashcard = async (
     id: string,
     updatedData: Partial<IFlashcard>

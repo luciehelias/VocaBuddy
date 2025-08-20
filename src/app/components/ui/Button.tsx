@@ -1,19 +1,19 @@
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
-  variant?: "auth" | "secondary";
+  variant?: "auth" | "primary";
 };
 
 const Button = ({
   children,
   className = "",
-  variant = "secondary",
+  variant = "primary",
   ...props
 }: ButtonProps) => {
-  const baseStyle = "p-2 w-38 rounded-md cursor-pointer";
+  const baseStyle = "p-2 cursor-pointer";
 
   const variants = {
-    auth: "border-2 uppercase text-sm",
-    secondary: "w-full rounded-xl",
+    auth: "border-2 uppercase text-sm w-38 rounded-md",
+    primary: "w-full rounded-xl",
   };
 
   return (
