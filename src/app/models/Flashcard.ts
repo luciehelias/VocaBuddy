@@ -5,7 +5,7 @@ export interface IFlashcard extends Document {
   nativeWord: string;
   translatedWord: string;
   targetLanguage: string;
-  category: string;
+  category?: string;
   exampleSentence?: string;
   imageUrl?: string;
   knowledgeScore: number;

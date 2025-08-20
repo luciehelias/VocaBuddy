@@ -18,16 +18,10 @@ const Header = () => {
         VocaBuddy
       </h1>
       <div className="flex flex-col items-center gap-4">
-        <Button
-          className="border-2 uppercase text-sm"
-          onClick={() => console.log("Connect")}
-        >
+        <Button variant="auth" onClick={() => console.log("Connect")}>
           Se connecter
         </Button>
-        <Button
-          className="border-2 uppercase text-sm"
-          onClick={() => console.log("Sign in")}
-        >
+        <Button variant="auth" onClick={() => console.log("Sign in")}>
           S'inscrire
         </Button>
       </div>

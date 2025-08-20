@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { poppins } from "@/fonts/poppins";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
@@ -25,9 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col justify-between min-h-screen bg-orange-50 ${poppins.className}`}
       >
+        <header className="p-4">
+          <Header />
+        </header>
         {children}
+        <footer className="flex justify-center">
+          <Footer />
+        </footer>
       </body>
     </html>
   );
