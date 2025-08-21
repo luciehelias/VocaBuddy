@@ -10,6 +10,9 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "VocaBuddy",
   description: "Buddy up your vocabulary with VocaBuddy!",
+  icons: {
+    icon: "/favicon.io",
+  },
 };
 
 export default function RootLayout({
