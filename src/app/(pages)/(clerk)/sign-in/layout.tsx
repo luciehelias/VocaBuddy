@@ -6,7 +6,7 @@ export default function ClerkLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen">
+    <div className="flex flex-col items-center justify-center w-screen">
       <h1 className="text-2xl font-bold mt-4 ">
         Connecte toi à ton compte VocaBuddy !
       </h1>

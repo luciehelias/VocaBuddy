@@ -27,8 +27,10 @@ export default function RootLayout({
           <header className="p-4">
             <Header />
           </header>
-          {children}
-          <footer className="flex justify-center">
+          <main className="flex-1 flex items-center justify-center overflow-auto">
+            {children}
+          </main>
+          <footer className="flex justify-center bottom-0">
             <Footer />
           </footer>
         </ClerkProvider>
