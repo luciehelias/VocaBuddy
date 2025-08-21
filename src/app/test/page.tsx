@@ -13,9 +13,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main>
+    <div>
       <h1>Database Status</h1>
       <p>{dbStatus}</p>
-    </main>
+    </div>
   );
 }

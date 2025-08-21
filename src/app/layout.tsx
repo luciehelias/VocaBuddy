@@ -4,8 +4,9 @@ import "./globals.css";
 
 import { poppins } from "@/fonts/poppins";
 
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { ClerkProvider } from "../app/services/clerk/components/ClerkProvider";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
@@ -22,13 +23,17 @@ export default function RootLayout({
       <body
         className={`flex flex-col justify-between min-h-screen bg-orange-50 ${poppins.className}`}
       >
-        <header className="p-4">
-          <Header />
-        </header>
-        {children}
-        <footer className="flex justify-center">
-          <Footer />
-        </footer>
+        <ClerkProvider>
+          <header className="p-4">
+            <Header />
+          </header>
+          <main className="flex-1 flex items-center justify-center overflow-auto">
+            {children}
+          </main>
+          <footer className="flex justify-center bottom-0">
+            <Footer />
+          </footer>
+        </ClerkProvider>
       </body>
     </html>
   );

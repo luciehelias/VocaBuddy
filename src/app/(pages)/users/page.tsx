@@ -13,7 +13,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main>
+    <div>
       <h1 className="text-xl">User</h1>
       {!users && <p>No User Found</p>}
       <ul>
@@ -23,6 +23,6 @@ export default function HomePage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }
