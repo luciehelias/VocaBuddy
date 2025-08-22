@@ -1,6 +1,5 @@
 export interface IUser {
-  name: string;
-  email: string;
+  username: string;
   avatarUrl?: string;
   nativeLanguage: string;
   targetLanguage: string[];
