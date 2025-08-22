@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IUser } from "@/types/user";
+import Title from "@/ui/Title";
 
 export default function HomePage() {
   const [users, setUsers] = useState<IUser[] | null>(null);
@@ -14,7 +15,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1 className="text-xl mb-8">All Users</h1>
+      <Title variant="sm">All Users</Title>
       {!users && <p>No User Found</p>}
       <ul className="p-8 flex items-center justify-start gap-2 flex-wrap">
         {users?.map((user) => (
@@ -22,7 +23,7 @@ export default function HomePage() {
             <img src={user.avatarUrl} alt={`${user.username}'s avatar`} className="w-10 h-10 rounded-full" />
             <span>Username : {user.username}</span>
             <span>Native Language : {user.nativeLanguage.toUpperCase()}</span>
-            <span>Target Language : {user.targetLanguage.join(", ")}</span>
+            <span>Target Languages : {user.targetLanguage?.length ? user.targetLanguage.join(", ") : "None"}</span>
           </li>
         ))}
       </ul>

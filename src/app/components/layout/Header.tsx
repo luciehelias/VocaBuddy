@@ -1,12 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Button from "@/components/ui/Button";
+import Button from "@/ui/Button";
 import { delius } from "@/fonts/delius";
 import Link from "next/link";
-import {
-  SignOutButton,
-} from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import {
   SignedIn,
   SignedOut,
@@ -25,9 +23,9 @@ const Header = () => {
         />
       </Link>
       <Link href="/" className="flex items-center gap-2">
-        <h1 className={`text-5xl font-bold p-4 ${delius.className}`}>
+        <p className={`text-5xl font-bold p-4 ${delius.className}`}>
           VocaBuddy
-        </h1>
+        </p>
       </Link>
       <div className="flex flex-col items-center gap-4">
         <SignedOut>
@@ -40,9 +38,7 @@ const Header = () => {
         </SignedOut>
         <SignedIn>
           <SignOutButton>
-            <Button variant="auth">
-              Se déconnecter
-            </Button>
+            <Button variant="auth">Se déconnecter</Button>
           </SignOutButton>
         </SignedIn>
       </div>

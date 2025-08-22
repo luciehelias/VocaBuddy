@@ -5,13 +5,13 @@ import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const evt = await verifyWebhook(req, {
+    const event = await verifyWebhook(req, {
       signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET!,
     });
     const { id, username, profile_image_url } =
-      evt.data as any;
+      event.data as any;
 
-    if (evt.type === "user.created") {
+    if (event.type === "user.created") {
       await connectToDatabase();
 
       const newUser = await User.create({

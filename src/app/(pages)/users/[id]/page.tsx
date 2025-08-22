@@ -1,3 +1,5 @@
+import Title from "@/ui/Title";
+
 export default async function UserPage({ params }: { params: { id: string } }) {
   const { id } = params;
 
@@ -6,7 +8,7 @@ export default async function UserPage({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <h1>User Page</h1>
+      <Title>User Page</Title>
       <p>User ID: {id}</p>
     </div>
   );

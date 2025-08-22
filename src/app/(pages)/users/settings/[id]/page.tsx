@@ -1,3 +1,5 @@
+import Title from "@/ui/Title";
+
 // This runs on the server by default
 export default async function UserSettingsPage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -7,7 +9,7 @@ export default async function UserSettingsPage({ params }: { params: { id: strin
 
   return (
     <div>
-      <h1>User Settings Page</h1>
+      <Title>User Settings Page</Title>
       <p>User ID: {id}</p>
     </div>
   );

@@ -1,3 +1,4 @@
+import Title from "@/ui/Title";
 import Link from "next/link";
 
 export default function ClerkLayout({
@@ -7,9 +8,7 @@ export default function ClerkLayout({
 }>) {
   return (
     <div className="flex flex-col items-center justify-center w-screen">
-      <h1 className="text-2xl font-bold mt-4 ">
-        Connecte toi à ton compte VocaBuddy !
-      </h1>
+      <Title variant="sm">Connecte toi à ton compte VocaBuddy !</Title>
       <p className="mt-2 text-sm text-gray-500 mb-8">
         Une fois connecté, tu pourras accéder à toutes les fonctionnalités de
         VocaBuddy.

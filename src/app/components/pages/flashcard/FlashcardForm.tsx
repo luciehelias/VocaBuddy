@@ -6,6 +6,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 import Button from "@/ui/Button";
 import Input from "@/ui/Input";
 import Dropdown from "@/ui/Dropdown";
+import Title from "@/ui/Title";
 
 const categories = [
   "Verbes",
@@ -38,8 +39,8 @@ const FlashcardForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-6 items-center shadow-blue-200 w-3/12">
-      <h1>Créer votre flashcard</h1>
+    <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-6 items-center shadow-blue-200 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+      <Title variant="flashcard">Créer votre flashcard</Title>
       <div className="flex flex-col items-center gap-6 w-full">
         {/* // TODO : add the natif language of the user and the language that the
         user wants to learn */}
@@ -54,11 +55,8 @@ const FlashcardForm = () => {
           onChange={setTranslatedWord}
         />
       </div>
-      <div className="flex flex-col gap-4 w-full max-w-sm">
-        <Button
-          className="flex justify-center gap-2"
-          onClick={() => setShowSelect((prev) => !prev)}
-        >
+      <div className="flex flex-col gap-4 w-full">
+        <Button variant="option" onClick={() => setShowSelect((prev) => !prev)}>
           {showSelect ? "Masquer les options" : "Ajouter des options"}
           {showSelect ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </Button>
@@ -70,7 +68,7 @@ const FlashcardForm = () => {
           />
         )}
       </div>
-      <Button className="border-1 bg-emerald-200" onClick={handleCreate}>
+      <Button variant="submit" onClick={handleCreate}>
         Valider
       </Button>
     </div>
