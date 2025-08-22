@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IUser } from "@/types/user";
+import Title from "@/ui/Title";
 
 export default function HomePage() {
   const [users, setUsers] = useState<IUser[] | null>(null);
@@ -14,7 +15,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1 className="text-xl">User</h1>
+      <Title variant="sm">User</Title>
       {!users && <p>No User Found</p>}
       <ul>
         {users?.map((u) => (
