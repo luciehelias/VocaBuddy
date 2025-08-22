@@ -7,6 +7,7 @@ const isProtectedRoute = createRouteMatcher([
 ])
 
 export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) await auth.protect()
 })
 
     // If the user is not authenticated, redirect to the sign-in page

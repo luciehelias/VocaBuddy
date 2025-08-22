@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const evt = await verifyWebhook(req, {
       signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET!,
     });
-    const { id, username, first_name, profile_image_url } =
+    const { id, username, profile_image_url } =
       evt.data as any;
 
     if (evt.type === "user.created") {
@@ -17,13 +17,8 @@ export async function POST(req: NextRequest) {
       const newUser = await User.create({
         clerkId: id,
         username: username ?? `user_${id.slice(-6)}`,
-        avatarUrl: profile_image_url || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        nativeLanguage: "fr",
-        targetLanguage: ["en"],
-        settings: {
-          theme: "light",
-          notifications: true,
-        },
+        avatarUrl: profile_image_url,
+        nativeLanguage: "FR",
       });
 
       console.log("✅ User created in DB:", newUser._id);
