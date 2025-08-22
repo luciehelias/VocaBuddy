@@ -1,10 +1,10 @@
+import Title from "@/ui/Title";
+
 export default function Custom404() {
   return (
-    <div className="flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
-        <p className="text-lg">The page you are looking for does not exist.</p>
-      </div>
+    <div className="gap-6 flex flex-col items-center justify-center">
+      <Title variant="lg">404 - Page Not Found</Title>
+      <p className="text-lg">The page you are looking for does not exist.</p>
     </div>
   );
 }
