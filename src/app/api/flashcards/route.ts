@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/dbconnect";
 import { Flashcard } from "@/app/models/Flashcard";
+import { currentUser } from "@clerk/nextjs/server";
+import { User } from "@/app/models/User";
 
 export async function GET() {
   try {
@@ -17,9 +19,17 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const clerkUser = await currentUser();
+  if (!clerkUser) throw new Error("Not logged in");
+
   try {
-    const body = await request.json();
     await connectToDatabase();
+    // Find your MongoDB user by clerkId
+    const dbUser = await User.findOne({ clerkId: clerkUser.id });
+    if (!dbUser) throw new Error("User not found in DB");
+
+    const body = await request.json();
+    body.userId = dbUser._id;;
     const flashcard = await Flashcard.create(body);
     return NextResponse.json(flashcard);
   } catch (error) {

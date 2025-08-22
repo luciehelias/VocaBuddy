@@ -27,7 +27,6 @@ const FlashcardForm = () => {
 
   const handleCreate = () => {
     createFlashcard({
-      userId: "6432f4abc1234567890def12", // Replace with actual user ID
       nativeWord,
       translatedWord,
       targetLanguage: "en",
