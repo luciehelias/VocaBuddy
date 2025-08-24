@@ -7,6 +7,8 @@ import { poppins } from "@/fonts/poppins";
 import { ClerkProvider } from "../app/services/clerk/components/ClerkProvider";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import { getUser } from "./utils/getUser";
+import { UserProvider } from "@/contexts/userContext";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
@@ -16,26 +18,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
   return (
     <html lang="en">
       <body
         className={`flex flex-col justify-between min-h-screen bg-orange-50 ${poppins.className}`}
       >
         <ClerkProvider>
-          <header className="p-4">
-            <Header />
-          </header>
-          <main className="flex-1 flex items-center justify-center overflow-auto">
-            {children}
-          </main>
-          <footer className="flex justify-center bottom-0">
-            <Footer />
-          </footer>
+          <UserProvider user={user}>
+            <header className="p-4">
+              <Header />
+            </header>
+            <main className="flex-1 flex items-center justify-center overflow-auto">
+              {children}
+            </main>
+            <footer className="flex justify-center bottom-0">
+              <Footer />
+            </footer>
+          </UserProvider>
         </ClerkProvider>
       </body>
     </html>
