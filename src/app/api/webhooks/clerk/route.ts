@@ -1,4 +1,4 @@
-import { User } from "@/app/models/User";
+import { User } from "@/models/User";
 import { connectToDatabase } from "@/lib/dbconnect";
 import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { NextRequest } from "next/server";

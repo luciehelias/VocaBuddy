@@ -1,6 +1,6 @@
 "use client";
 
-import FlashcardForm from "@/app/components/pages/flashcard/FlashcardForm";
+import FlashcardForm from "@/components/pages/flashcard/FlashcardForm";
 
 export default function Flashcard() {
   return (

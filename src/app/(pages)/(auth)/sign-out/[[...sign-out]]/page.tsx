@@ -1,5 +1,5 @@
-import Button from "@/ui/Button";
-import Title from "@/ui/Title";
+import Button from "@/components/ui/Button";
+import Title from "@/components/ui/Title";
 import Link from "next/link";
 
 export default function SignOutPage() {

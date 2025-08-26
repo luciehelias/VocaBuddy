@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/dbconnect";
-import { Flashcard } from "@/app/models/Flashcard";
+import { Flashcard } from "@/models/Flashcard";
 import { currentUser } from "@clerk/nextjs/server";
-import { User } from "@/app/models/User";
+import { User } from "@/models/User";
 
 export async function GET() {
   try {

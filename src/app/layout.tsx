@@ -4,9 +4,9 @@ import "./globals.css";
 
 import { poppins } from "@/fonts/poppins";
 
-import { ClerkProvider } from "../app/services/clerk/components/ClerkProvider";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import { ClerkProvider } from "../services/clerk/components/ClerkProvider";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
