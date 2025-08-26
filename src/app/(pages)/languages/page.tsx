@@ -26,9 +26,9 @@ export default function LanguagesPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-12 items-center justify-center">
       <Title>Sélectionnez un langage à apprendre :</Title>
-      <div className="flex flex-wrap gap-8 mt-4">
+      <div className="flex flex-wrap gap-4 max-w-4xl justify-center">
         {languagesToLearn.map((language) => (
           <LanguageCard
             key={language.code}
