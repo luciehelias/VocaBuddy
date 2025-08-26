@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useFlashcards } from "@/hooks/useFlashcard";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import Button from "@/ui/Button";
-import Input from "@/ui/Input";
-import Dropdown from "@/ui/Dropdown";
-import Title from "@/ui/Title";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import Dropdown from "@/components/ui/Dropdown";
+import Title from "@/components/ui/Title";
 
 const categories = [
   "Verbes",

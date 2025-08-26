@@ -1,4 +1,4 @@
-import Title from "@/ui/Title";
+import Title from "@/components/ui/Title";
 
 export default async function UserPage({ params }: { params: { id: string } }) {
   const { id } = params;

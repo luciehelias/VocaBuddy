@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Button from "@/ui/Button";
+import Button from "@/components/ui/Button";
 import { delius } from "@/fonts/delius";
 import Link from "next/link";
 import { SignOutButton } from "@clerk/nextjs";
 import {
   SignedIn,
   SignedOut,
-} from "@/app/services/clerk/components/SignInStatus";
+} from "@/services/clerk/components/SignInStatus";
 
 const Header = () => {
   return (

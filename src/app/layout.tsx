@@ -4,10 +4,10 @@ import "./globals.css";
 
 import { poppins } from "@/fonts/poppins";
 
-import { ClerkProvider } from "../app/services/clerk/components/ClerkProvider";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import { getUser } from "./utils/getUser";
+import { ClerkProvider } from "@/services/clerk/components/ClerkProvider";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { getUser } from "@/utils/getUser";
 import { UserProvider } from "@/contexts/userContext";
 
 export const metadata: Metadata = {

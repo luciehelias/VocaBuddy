@@ -1,4 +1,4 @@
-import Title from "@/ui/Title";
+import Title from "@/components/ui/Title";
 
 // This runs on the server by default
 export default async function UserSettingsPage({ params }: { params: { id: string } }) {
