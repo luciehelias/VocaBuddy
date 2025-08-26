@@ -9,12 +9,10 @@ export default function ClerkLayout({
 }>) {
   return (
     <div className="flex flex-col items-center justify-center w-screen gap-4">
-      <Title >Bienvenue sur votre Profil</Title>
+      <Title>Bienvenue sur votre Profil</Title>
       <p className="text-lg">Gérez vos informations et paramètres ici.</p>
       <Link href="/flashcards" className="mb-8">
-        <Button className="border-2 uppercase text-sm">
-          Voir vos Flash Cards
-        </Button>
+        <Button variant="primary">Voir vos Flash Cards</Button>
       </Link>
       {children}
     </div>
