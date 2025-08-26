@@ -27,7 +27,8 @@
       "@/models/*": ["./src/app/models/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/ui/*": ["./src/app/components/ui/*"],
-      "@/services/*": ["./src/app/services/*"]
+      "@/services/*": ["./src/app/services/*"],
+      "@/data/*": ["./src/data/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
