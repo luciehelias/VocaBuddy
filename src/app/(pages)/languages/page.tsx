@@ -13,14 +13,14 @@ export default function LanguagesPage() {
   );
 
   const languagesToLearn = targetLanguages.length
-    ? languages.filter((language) => targetLanguages.includes(language.name))
+    ? languages.filter((language) => targetLanguages.includes(language.code))
     : [];
 
   if (languagesToLearn.length === 0) {
     return (
       <LanguageAddCard
         targetLanguages={targetLanguages}
-        AddTargetLanguage={addTargetLanguage}
+        addTargetLanguage={addTargetLanguage}
       />
     );
   }
@@ -38,7 +38,7 @@ export default function LanguagesPage() {
         ))}
         <LanguageAddCard
           targetLanguages={targetLanguages}
-          AddTargetLanguage={addTargetLanguage}
+          addTargetLanguage={addTargetLanguage}
         />
       </div>
     </div>

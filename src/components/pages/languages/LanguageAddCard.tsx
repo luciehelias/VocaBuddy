@@ -6,10 +6,10 @@ import { useState } from "react";
 
 const LanguageAddCard = ({
   targetLanguages,
-  AddTargetLanguage: addTargetLanguage,
+  addTargetLanguage: addTargetLanguage,
 }: {
   targetLanguages: string[];
-  AddTargetLanguage: (language: string) => void;
+  addTargetLanguage: (language: string) => void;
 }) => {
   const [showSelect, setShowSelect] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
@@ -31,7 +31,7 @@ const LanguageAddCard = ({
         <div className="flex flex-col items-center gap-6">
           <Dropdown
             options={languages
-              .filter((l) => !targetLanguages.includes(l.name))
+              .filter((l) => !targetLanguages.includes(l.code))
               .map((l) => l.name)}
             value={selectedLang}
             onChange={setSelectedLang}
@@ -42,7 +42,9 @@ const LanguageAddCard = ({
             variant="submit"
             onClick={() => {
               if (selectedLang) {
-                addTargetLanguage(selectedLang);
+                addTargetLanguage(
+                  languages.find((e) => e.name === selectedLang)!.code
+                );
                 setSelectedLang("");
                 setShowSelect(false);
               }
