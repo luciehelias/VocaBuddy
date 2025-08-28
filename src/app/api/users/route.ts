@@ -49,10 +49,8 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    if (targetLanguage && Array.isArray(targetLanguage)) {
-      user.targetLanguage = Array.from(
-        new Set([...(user.targetLanguage || []), ...targetLanguage])
-      );
+    if (targetLanguage) {
+      user.targetLanguage = [...(user.targetLanguage || []), ...targetLanguage];
     }
 
     if (nativeLanguage) user.nativeLanguage = nativeLanguage;

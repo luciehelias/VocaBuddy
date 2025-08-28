@@ -16,15 +16,6 @@ export default function LanguagesPage() {
     ? languages.filter((language) => targetLanguages.includes(language.code))
     : [];
 
-  if (languagesToLearn.length === 0) {
-    return (
-      <LanguageAddCard
-        targetLanguages={targetLanguages}
-        addTargetLanguage={addTargetLanguage}
-      />
-    );
-  }
-
   return (
     <div className="flex flex-col gap-12 items-center justify-center">
       <Title>Sélectionnez un langage à apprendre :</Title>

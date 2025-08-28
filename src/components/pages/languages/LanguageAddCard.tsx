@@ -14,6 +14,14 @@ const LanguageAddCard = ({
   const [showSelect, setShowSelect] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
 
+  const handleSubmit = () => {
+    if (selectedLang) {
+      addTargetLanguage(languages.find((e) => e.name === selectedLang)!.code);
+      setSelectedLang("");
+      setShowSelect(false);
+    }
+  };
+
   return (
     <div className="language-card">
       {!showSelect && (
@@ -38,18 +46,7 @@ const LanguageAddCard = ({
             placeholder="Ajoute une langue"
           />
 
-          <Button
-            variant="submit"
-            onClick={() => {
-              if (selectedLang) {
-                addTargetLanguage(
-                  languages.find((e) => e.name === selectedLang)!.code
-                );
-                setSelectedLang("");
-                setShowSelect(false);
-              }
-            }}
-          >
+          <Button variant="submit" onClick={handleSubmit}>
             Ajouter
           </Button>
         </div>
