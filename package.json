@@ -10,8 +10,9 @@
     "cm": "git-cz"
   },
   "dependencies": {
-    "lucide-react": "^0.540.0",
     "@clerk/nextjs": "^6.31.3",
+    "cloudinary": "^2.7.0",
+    "lucide-react": "^0.540.0",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.1",
     "next": "15.4.6",
