@@ -1,53 +1,53 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
 import { useUserData } from "@/contexts/userContext";
-import { IUser } from "@/app/types/user";
-import { IFlashcard } from "@/app/types/flashcard";
+import { IUser } from "@/types/user";
+import { IFlashcard } from "@/types/flashcard";
+import { useTargetLanguages } from "@/hooks/useTargetLanguages";
+import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
+import LanguageCard from "@/components/pages/languages/LanguageCard";
 
 const hasFlashcardsOfLanguage = (languageId: string, user: IUser) => {
-  return user?.flashcards.some((flashcard: IFlashcard) => flashcard.targetLanguage === languageId);
+  return user?.flashcards.some(
+    (flashcard: IFlashcard) => flashcard.targetLanguage === languageId
+  );
+};
+
+const getHref = (langCode: string, user: IUser | null): string => {
+  if (user && hasFlashcardsOfLanguage(langCode, user)) {
+    return `/languages/${langCode}`;
+  }
+  // return `/flashcards/create/${langCode}`
+  return `/flashcards`;
 };
 
 export default function LanguagesPage() {
   const user = useUserData();
-  const targetLanguage = user?.targetLanguage;
-  const languagesToLearn = targetLanguage
-    ? languages.filter((lang) => targetLanguage.includes(lang.code))
-    : languages;
+  const { targetLanguages, addTargetLanguage } = useTargetLanguages(
+    user?.targetLanguage ?? []
+  );
 
-  if (languagesToLearn.length === 0) {
-    return <div>Aucun langage à apprendre trouvé.</div>;
-  }
-  const handleLink = (langCode: string): string =>{
-    if(user && hasFlashcardsOfLanguage(langCode, user)){
-      return `/languages/${langCode}`
-    }
-    // return `/flashcards/create/${langCode}`
-    return `/flashcards`
-  }
+  const languagesToLearn = targetLanguages.length
+    ? languages.filter((language) => targetLanguages.includes(language.code))
+    : [];
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-12 items-center justify-center">
       <Title>Sélectionnez un langage à apprendre :</Title>
-      <div className="grid grid-cols-3 gap-8 mt-4">
-        {languagesToLearn.map((lang) => (
-          <Link
-            href={handleLink(lang.code)}
-            key={lang.id}
-            className="flex flex-col gap-2 items-center p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-black cursor-pointer"
-          >
-            <Image
-              src={lang.flagUrl}
-              alt={`${lang.name} flag`}
-              width={100}
-              height={100}
-            />
-            <p className="text-lg">{lang.name}</p>
-          </Link>
+      <div className="flex flex-wrap gap-4 max-w-4xl justify-center">
+        {languagesToLearn.map((language) => (
+          <LanguageCard
+            key={language.code}
+            name={language.name}
+            flagUrl={language.flagUrl}
+            href={getHref(language.code, user)}
+          />
         ))}
+        <LanguageAddCard
+          targetLanguages={targetLanguages}
+          addTargetLanguage={addTargetLanguage}
+        />
       </div>
     </div>
   );
