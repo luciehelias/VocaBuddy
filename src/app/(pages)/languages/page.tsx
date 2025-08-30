@@ -8,15 +8,15 @@ import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
 import LanguageCard from "@/components/pages/languages/LanguageCard";
 import { IUser } from "@/types/user";
 
-const hasFlashcardsOfLanguage = (languageId: string, user: IUser) => {
+const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
   return user?.flashcards.some(
-    (flashcard: IFlashcard) => flashcard.targetLanguage === languageId
+    (flashcard: IFlashcard) => flashcard.targetLanguage === languageCode
   );
 };
 
 const getHref = (langCode: string, user: IUser | null): string => {
   if (user && hasFlashcardsOfLanguage(langCode, user)) {
-    return `/languages/${langCode}`;
+    return `/language/${langCode.toLowerCase()}`;
   }
   return `/flashcards/create/${langCode}`
 };
