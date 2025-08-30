@@ -17,7 +17,7 @@ const categories = [
   "Autres",
 ];
 
-const FlashcardForm = () => {
+const FlashcardForm = ({ languageCode }: { languageCode: string }) => {
   const { createFlashcard } = useFlashcards();
 
   const [nativeWord, setNativeWord] = useState("");
@@ -30,7 +30,7 @@ const FlashcardForm = () => {
     createFlashcard({
       nativeWord,
       translatedWord,
-      targetLanguage: "en",
+      targetLanguage: languageCode,
       category,
     });
     setNativeWord("");

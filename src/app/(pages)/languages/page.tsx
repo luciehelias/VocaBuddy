@@ -18,8 +18,7 @@ const getHref = (langCode: string, user: IUser | null): string => {
   if (user && hasFlashcardsOfLanguage(langCode, user)) {
     return `/languages/${langCode}`;
   }
-  // return `/flashcards/create/${langCode}`
-  return `/flashcards`;
+  return `/flashcards/create/${langCode}`
 };
 
 export default function LanguagesPage() {
