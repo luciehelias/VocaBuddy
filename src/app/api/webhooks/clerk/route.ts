@@ -8,8 +8,7 @@ export async function POST(req: NextRequest) {
     const event = await verifyWebhook(req, {
       signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET!,
     });
-    const { id, username, profile_image_url } =
-      event.data as any;
+    const { id, username, profile_image_url } = event.data as any;
 
     if (event.type === "user.created") {
       await connectToDatabase();
@@ -18,7 +17,6 @@ export async function POST(req: NextRequest) {
         clerkId: id,
         username: username ?? `user_${id.slice(-6)}`,
         avatarUrl: profile_image_url,
-        nativeLanguage: "FR",
       });
 
       console.log("✅ User created in DB:", newUser._id);

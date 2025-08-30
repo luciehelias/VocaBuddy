@@ -19,6 +19,7 @@ const Dropdown = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full p-2 pr-8 border rounded-2xl border-gray-300 text-gray-500 appearance-none cursor-pointer"
+        required
       >
         <option value="" hidden>
           {placeholder}
