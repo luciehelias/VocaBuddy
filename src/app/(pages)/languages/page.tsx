@@ -1,28 +1,36 @@
 "use client";
 import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
-import Image from "next/image";
 import { useUserData } from "@/contexts/userContext";
+import { useTargetLanguages } from "@/hooks/useTargetLanguages";
+import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
+import LanguageCard from "@/components/pages/languages/LanguageCard";
 
 export default function LanguagesPage() {
-    const user = useUserData();
-    const targetLanguage = user?.targetLanguage;
-    const languagesToLearn = targetLanguage ? languages.filter(lang => targetLanguage.includes(lang.code)) : languages;
+  const user = useUserData();
+  const { targetLanguages, addTargetLanguage } = useTargetLanguages(
+    user?.targetLanguage ?? []
+  );
 
-    if (languagesToLearn.length === 0) {
-      return <div>Aucun langage à apprendre trouvé.</div>;
-    }
+  const languagesToLearn = targetLanguages.length
+    ? languages.filter((language) => targetLanguages.includes(language.code))
+    : [];
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-12 items-center justify-center">
       <Title>Sélectionnez un langage à apprendre :</Title>
-      <div className="grid grid-cols-3 gap-8 mt-4">
-        {languagesToLearn.map((lang) => (
-          <div className="flex flex-col gap-2 items-center p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-black cursor-pointer" key={lang.code}>
-            <Image src={lang.flagUrl} alt={`${lang.name} flag`} width={100} height={100} />
-            <p className="text-lg">{lang.name}</p>
-          </div>
+      <div className="flex flex-wrap gap-4 max-w-4xl justify-center">
+        {languagesToLearn.map((language) => (
+          <LanguageCard
+            key={language.code}
+            name={language.name}
+            flagUrl={language.flagUrl}
+          />
         ))}
+        <LanguageAddCard
+          targetLanguages={targetLanguages}
+          addTargetLanguage={addTargetLanguage}
+        />
       </div>
     </div>
   );

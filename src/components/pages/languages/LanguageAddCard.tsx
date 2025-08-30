@@ -1,0 +1,58 @@
+import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import { languages } from "@/data/languages";
+import { CirclePlus } from "lucide-react";
+import { useState } from "react";
+
+const LanguageAddCard = ({
+  targetLanguages,
+  addTargetLanguage: addTargetLanguage,
+}: {
+  targetLanguages: string[];
+  addTargetLanguage: (language: string) => void;
+}) => {
+  const [showSelect, setShowSelect] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("");
+
+  const handleSubmit = () => {
+    if (selectedLang) {
+      addTargetLanguage(languages.find((e) => e.name === selectedLang)!.code);
+      setSelectedLang("");
+      setShowSelect(false);
+    }
+  };
+
+  return (
+    <div className="language-card">
+      {!showSelect && (
+        <>
+          <CirclePlus
+            size={50}
+            className="flex-1 flex items-center justify-center"
+            onClick={() => setShowSelect(true)}
+          />
+          <p className="text-lg text-center">Ajoute une autre langue</p>
+        </>
+      )}
+
+      {showSelect && (
+        <div className="flex flex-col items-center gap-6">
+          <Dropdown
+            options={languages
+              .filter((l) => !targetLanguages.includes(l.code))
+              .map((l) => l.name)}
+            value={selectedLang}
+            onChange={setSelectedLang}
+            placeholder="Ajoute une langue"
+          />
+
+          <Button variant="submit" onClick={handleSubmit}>
+            Ajouter
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default LanguageAddCard;
