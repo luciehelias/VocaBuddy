@@ -7,16 +7,16 @@ import { IUser } from "@/types/user";
 export const getUser = async (): Promise<IUser | null> => {
   const clerkUser = await currentUser();
   if (!clerkUser) return null;
-  
+
   await connectToDatabase();
-  
+
   // lean is used to convert Mongoose documents to plain JavaScript objects
   const user = await User.findOne({ clerkId: clerkUser.id }).lean();
   if (!user) return null;
 
   const userFlashcards = await Flashcard.find({ userId: user._id }).lean();
 
-    const newUser = {
+  const newUser = {
     ...user,
     id: user._id.toString(),
     createdAt: user.createdAt?.toISOString?.() ?? null,

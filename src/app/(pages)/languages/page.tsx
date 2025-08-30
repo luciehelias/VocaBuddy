@@ -1,12 +1,12 @@
 "use client";
+
 import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
-import { useUserData } from "@/contexts/userContext";
-import { IUser } from "@/types/user";
 import { IFlashcard } from "@/types/flashcard";
 import { useTargetLanguages } from "@/hooks/useTargetLanguages";
 import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
 import LanguageCard from "@/components/pages/languages/LanguageCard";
+import { IUser } from "@/types/user";
 
 const hasFlashcardsOfLanguage = (languageId: string, user: IUser) => {
   return user?.flashcards.some(
@@ -21,10 +21,9 @@ const getHref = (langCode: string, user: IUser | null): string => {
   return `/flashcards/create/${langCode}`
 };
 
-export default function LanguagesPage() {
-  const user = useUserData();
+export default function LanguagesPage({ user }: { user: IUser | null }) {
   const { targetLanguages, addTargetLanguage } = useTargetLanguages(
-    user?.targetLanguage ?? []
+    user?.targetLanguage
   );
 
   const languagesToLearn = targetLanguages.length

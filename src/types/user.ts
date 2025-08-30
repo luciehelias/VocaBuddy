@@ -3,10 +3,11 @@ import { IFlashcard } from "./flashcard";
 
 // User interface for the client-side
 export interface IUser {
+  clerkId: string;
   id: string;
   username: string;
   avatarUrl?: string;
-  nativeLanguage: string;
+  nativeLanguage?: string;
   targetLanguage?: string[];
   createdAt: string;
   settings: {
@@ -21,7 +22,7 @@ export interface IUserDB extends Document {
   clerkId: string;
   username: string;
   avatarUrl?: string;
-  nativeLanguage: string;
+  nativeLanguage?: string;
   targetLanguage?: string[];
   createdAt: Date;
   settings: {
@@ -33,4 +34,4 @@ export interface IUserDB extends Document {
 // User interface response from MongoDB
 export interface IUserDataResponse extends IUserDB {
   _id: ObjectId;
-};
+}
