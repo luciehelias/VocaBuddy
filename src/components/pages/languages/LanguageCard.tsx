@@ -16,9 +16,14 @@ export default function LanguageCard({
   return (
     <Link
       href={href}
-      className="language-card gap-6 flex flex-col items-center p-6 border border-gray-200 rounded-lg hover:shadow-lg hover:border-black cursor-pointer"
+      className="language-card"
     >
-      <Image src={flagUrl} alt={`${name} flag`} width={100} height={100} />
+      <Image
+        src={flagUrl}
+        alt={`${name} flag`}
+        width={150}
+        height={150}
+      />
       <p className="text-lg">{name}</p>
     </Link>
   );

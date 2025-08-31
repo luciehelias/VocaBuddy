@@ -6,3 +6,12 @@ export const languages = [
   { code: "IT", name: "Italiano", flagUrl: "/assets/flags/it.png" },
   { code: "PT", name: "Português", flagUrl: "/assets/flags/pt.png" },
 ];
+
+export const categories = [
+  "Verbes",
+  "Noms",
+  "Expression",
+  "Adjectifs",
+  "Adverbes",
+  "Autres",
+];
