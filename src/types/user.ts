@@ -1,4 +1,5 @@
 import { Document, ObjectId } from "mongoose";
+import { IFlashcard } from "./flashcard";
 
 // User interface for the client-side
 export interface IUser {
@@ -13,6 +14,7 @@ export interface IUser {
     theme: "light" | "dark";
     notifications: boolean;
   };
+  flashcards: IFlashcard[];
 }
 
 // User interface sent to the database

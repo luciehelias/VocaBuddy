@@ -10,8 +10,8 @@ export default function Home() {
         Ton assistant personnel de vocabulaire pour t'aider à apprendre et à
         progresser !
       </p>
-      <Link href="/flashcards" className="mt-4">
-        <Button>Crée une Flash Card</Button>
+      <Link href="/languages" className="mt-4">
+        <Button>Choisir une langue à apprendre</Button>
       </Link>
     </div>
   );

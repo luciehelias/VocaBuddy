@@ -37,8 +37,8 @@ const flashcardSchema = new Schema<IFlashcard>(
     },
     category: {
       type: String,
-      required: true,
       trim: true,
+      default: "Autres"
     },
     exampleSentence: {
       type: String,

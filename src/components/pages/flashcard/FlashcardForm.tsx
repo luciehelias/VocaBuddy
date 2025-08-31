@@ -7,22 +7,13 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
+import { categories } from "@/data/languages";
 
-const categories = [
-  "Verbes",
-  "Noms",
-  "Expression",
-  "Adjectifs",
-  "Adverbes",
-  "Autres",
-];
-
-const FlashcardForm = () => {
+const FlashcardForm = ({ languageCode }: { languageCode: string }) => {
   const { createFlashcard } = useFlashcards();
 
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
-
   const [category, setCategory] = useState("");
   const [showSelect, setShowSelect] = useState(false);
 
@@ -30,7 +21,7 @@ const FlashcardForm = () => {
     createFlashcard({
       nativeWord,
       translatedWord,
-      targetLanguage: "en",
+      targetLanguage: languageCode,
       category,
     });
     setNativeWord("");

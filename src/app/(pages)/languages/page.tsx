@@ -2,10 +2,24 @@
 
 import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
+import { IFlashcard } from "@/types/flashcard";
 import { useTargetLanguages } from "@/hooks/useTargetLanguages";
 import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
 import LanguageCard from "@/components/pages/languages/LanguageCard";
 import { IUser } from "@/types/user";
+
+const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
+  return user?.flashcards.some(
+    (flashcard: IFlashcard) => flashcard.targetLanguage === languageCode
+  );
+};
+
+const getHref = (langCode: string, user: IUser | null): string => {
+  if (user && hasFlashcardsOfLanguage(langCode, user)) {
+    return `/language/${langCode.toLowerCase()}`;
+  }
+  return `/flashcards/create/${langCode.toLowerCase()}`
+};
 
 export default function LanguagesPage({ user }: { user: IUser | null }) {
   const { targetLanguages, addTargetLanguage } = useTargetLanguages(
@@ -25,6 +39,7 @@ export default function LanguagesPage({ user }: { user: IUser | null }) {
             key={language.code}
             name={language.name}
             flagUrl={language.flagUrl}
+            href={getHref(language.code, user)}
           />
         ))}
         <LanguageAddCard

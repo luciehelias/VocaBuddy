@@ -52,7 +52,7 @@ export async function PATCH(request: Request) {
     if (targetLanguage) {
       user.targetLanguage = [...(user.targetLanguage || []), ...targetLanguage];
     }
-
+    
     if (nativeLanguage) user.nativeLanguage = nativeLanguage;
     if (avatarUrl) user.avatarUrl = avatarUrl;
 

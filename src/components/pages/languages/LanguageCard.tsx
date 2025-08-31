@@ -1,17 +1,30 @@
 "use client";
-
 import Image from "next/image";
+import Link from "next/link";
 
 type LanguageCardProps = {
   name: string;
   flagUrl: string;
+  href: string;
 };
 
-export default function LanguageCard({ name, flagUrl }: LanguageCardProps) {
+export default function LanguageCard({
+  name,
+  flagUrl,
+  href,
+}: LanguageCardProps) {
   return (
-    <div className="language-card gap-6">
-      <Image src={flagUrl} alt={`${name} flag`} width={200} height={200} />
+    <Link
+      href={href}
+      className="language-card"
+    >
+      <Image
+        src={flagUrl}
+        alt={`${name} flag`}
+        width={150}
+        height={150}
+      />
       <p className="text-lg">{name}</p>
-    </div>
+    </Link>
   );
 }
