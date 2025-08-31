@@ -12,14 +12,29 @@ export async function POST(req: NextRequest) {
 
     if (event.type === "user.created") {
       await connectToDatabase();
-
       const newUser = await User.create({
         clerkId: id,
         username: username ?? `user_${id.slice(-6)}`,
         avatarUrl: profile_image_url,
       });
-
       console.log("✅ User created in DB:", newUser._id);
+    }
+    if (event.type === "user.updated") {
+      await connectToDatabase();
+      const updatedUser = await User.findOneAndUpdate(
+        { clerkId: id },
+        {
+          username: username ?? `user_${id.slice(-6)}`,
+          avatarUrl: profile_image_url,
+        },
+        { new: true }
+      );
+      console.log("✅ User updated in DB:", updatedUser?._id);
+    }
+    if (event.type === "user.deleted") {
+      await connectToDatabase();
+      await User.findOneAndDelete({ clerkId: id });
+      console.log("✅ User deleted from DB:", id);
     }
 
     return new Response("Webhook received", { status: 200 });
