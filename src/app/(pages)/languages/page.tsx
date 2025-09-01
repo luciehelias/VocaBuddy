@@ -4,8 +4,8 @@ import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
 import { IFlashcard } from "@/types/flashcard";
 import { useTargetLanguages } from "@/hooks/useTargetLanguages";
-import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
-import LanguageCard from "@/components/pages/languages/LanguageCard";
+import LanguageAddCard from "@/components/card/LanguageAddCard";
+import LanguageCard from "@/components/card/LanguageCard";
 import { IUser } from "@/types/user";
 
 const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
