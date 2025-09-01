@@ -1,4 +1,6 @@
-export const CATEGORIES = [
+import { CategoryType } from "@/types/categories";
+
+export const CATEGORIES: CategoryType[] = [
   "Verbe",
   "Nom",
   "Expression",
