@@ -40,7 +40,7 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const { targetLanguage, nativeLanguage, avatarUrl } = body;
+    const { targetLanguages, nativeLanguage, avatarUrl } = body;
 
     await connectToDatabase();
 
@@ -49,10 +49,13 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    if (targetLanguage) {
-      user.targetLanguage = [...(user.targetLanguage || []), ...targetLanguage];
+    if (targetLanguages) {
+      user.targetLanguages = [
+        ...(user.targetLanguages || []),
+        ...targetLanguages,
+      ];
     }
-    
+
     if (nativeLanguage) user.nativeLanguage = nativeLanguage;
     if (avatarUrl) user.avatarUrl = avatarUrl;
 

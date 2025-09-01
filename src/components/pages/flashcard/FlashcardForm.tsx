@@ -21,7 +21,7 @@ const FlashcardForm = ({ languageCode }: { languageCode: string }) => {
     createFlashcard({
       nativeWord,
       translatedWord,
-      targetLanguage: languageCode,
+      targetLanguages: languageCode,
       category,
     });
     setNativeWord("");

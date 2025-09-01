@@ -9,7 +9,7 @@ const userSchema = new Schema<IUserDB>({
   username: { type: String, unique: true, required: true, trim: true },
   avatarUrl: { type: String, default: defaultAvatarUrl },
   nativeLanguage: { type: String, default: "" },
-  targetLanguage: { type: [String], default: [] },
+  targetLanguages: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now },
   settings: {
     theme: { type: String, enum: ["light", "dark"], default: "light" },

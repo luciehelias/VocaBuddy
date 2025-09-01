@@ -10,7 +10,7 @@ import { IUser } from "@/types/user";
 
 const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
   return user?.flashcards.some(
-    (flashcard: IFlashcard) => flashcard.targetLanguage === languageCode
+    (flashcard: IFlashcard) => flashcard.targetLanguages === languageCode
   );
 };
 
@@ -18,12 +18,12 @@ const getHref = (langCode: string, user: IUser | null): string => {
   if (user && hasFlashcardsOfLanguage(langCode, user)) {
     return `/language/${langCode.toLowerCase()}`;
   }
-  return `/flashcards/create/${langCode.toLowerCase()}`
+  return `/flashcards/create/${langCode.toLowerCase()}`;
 };
 
 export default function LanguagesPage({ user }: { user: IUser | null }) {
-  const { targetLanguages, addTargetLanguage } = useTargetLanguages(
-    user?.targetLanguage
+  const { targetLanguages, addTargetLanguages } = useTargetLanguages(
+    user?.targetLanguages
   );
 
   const languagesToLearn = targetLanguages.length
@@ -44,7 +44,7 @@ export default function LanguagesPage({ user }: { user: IUser | null }) {
         ))}
         <LanguageAddCard
           targetLanguages={targetLanguages}
-          addTargetLanguage={addTargetLanguage}
+          addTargetLanguages={addTargetLanguages}
         />
       </div>
     </div>
