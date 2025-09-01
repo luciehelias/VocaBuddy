@@ -16,9 +16,9 @@ const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
 
 const getHref = (langCode: string, user: IUser | null): string => {
   if (user && hasFlashcardsOfLanguage(langCode, user)) {
-    return `/language/${langCode.toLowerCase()}`;
+    return `/language/${langCode}`;
   }
-  return `/flashcards/${langCode.toLowerCase()}/create`;
+  return `/flashcards/${langCode}/create`;
 };
 
 export default function LanguagesPage({ user }: { user: IUser | null }) {
