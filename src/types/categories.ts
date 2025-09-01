@@ -1,4 +1,4 @@
-export type CategoryType =
+export type TWordCategory =
   | "Verbe"
   | "Nom"
   | "Expression"

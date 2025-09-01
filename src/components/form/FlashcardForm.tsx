@@ -8,7 +8,7 @@ import Input from "@/components/ui/Input";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
 import { CATEGORIES } from "@/const/flashcards";
-import { CategoryType } from "@/types/categories";
+import { TWordCategory } from "@/types/categories";
 
 export default function FlashcardForm({
   languageCode,
@@ -19,7 +19,7 @@ export default function FlashcardForm({
 
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
-  const [category, setCategory] = useState<CategoryType>("Autre");
+  const [category, setCategory] = useState<TWordCategory>("Autre");
   const [showSelect, setShowSelect] = useState(false);
 
   const handleCreate = () => {
@@ -61,7 +61,7 @@ export default function FlashcardForm({
             options={CATEGORIES}
             value={category}
             onChange={(selectedCategory) =>
-              setCategory(selectedCategory as CategoryType)
+              setCategory(selectedCategory as TWordCategory)
             }
           />
         )}

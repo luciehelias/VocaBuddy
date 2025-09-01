@@ -1,4 +1,4 @@
-import { CategoryType } from "./categories";
+import { TWordCategory } from "./categories";
 
 export interface IFlashcard {
   _id: string;
@@ -6,7 +6,7 @@ export interface IFlashcard {
   nativeWord: string;
   translatedWord: string;
   targetLanguages: string;
-  category: CategoryType;
+  category: TWordCategory;
   exampleSentence?: string;
   imageUrl?: string;
   knowledgeScore: number;
