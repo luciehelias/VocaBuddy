@@ -32,7 +32,7 @@ export default async function RootLayout({
         <ClerkProvider>
           <UserProvider user={user}>
             <Header />
-            <main className="flex-1 flex items-center justify-center overflow-auto">
+            <main className="flex-1 flex items-center justify-center p-4">
               {children}
             </main>
           </UserProvider>

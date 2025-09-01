@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
-import { categories } from "@/data/languages";
+import { CATEGORIES } from "@/const/flashcards";
 
 export default function FlashcardForm({
   languageCode,
@@ -35,17 +35,17 @@ export default function FlashcardForm({
 
   return (
     <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-6 items-center shadow-blue-200 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-      <Title variant="flashcard">Créer votre flashcard</Title>
+      <Title variant="flashcard">Crée ta flashcard</Title>
       <div className="flex flex-col items-center gap-6 w-full">
         {/* // TODO : add the natif language of the user and the language that the
         user wants to learn */}
         <Input
-          placeholder="Mot dans votre langue"
+          placeholder="Mot dans ta langue"
           value={nativeWord}
           onChange={setNativeWord}
         />
         <Input
-          placeholder="Mot traduit"
+          placeholder="Mot traduit dans la langue cible"
           value={translatedWord}
           onChange={setTranslatedWord}
         />
@@ -57,7 +57,7 @@ export default function FlashcardForm({
         </Button>
         {showSelect && (
           <Dropdown
-            options={categories}
+            options={CATEGORIES}
             value={category}
             onChange={setCategory}
           />

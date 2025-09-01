@@ -14,14 +14,16 @@ export default async function FlashcardPage({
   if (!id || !language) return <div>No language found</div>;
 
   return (
-    <div className="flex flex-col gap-6 items-center justify-center">
-      <Title>Créer une flashcard en {language}</Title>
-      <Image
-        src={`/assets/flags/${id}.png`}
-        alt={`Drapeau de ${language}`}
-        width={100}
-        height={100}
-      />
+    <div className="flex flex-col gap-8 items-center justify-center">
+      <div className="flex gap-6 w-full">
+        <Image
+          src={`/assets/flags/${id}.png`}
+          alt={`Drapeau de ${language}`}
+          width={40}
+          height={40}
+        />
+        <Title>Yeah un nouveau mot !</Title>
+      </div>
       <div className="w-full flex justify-center">
         <FlashcardForm languageCode={id} />
       </div>

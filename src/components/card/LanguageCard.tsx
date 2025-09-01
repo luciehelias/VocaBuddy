@@ -16,7 +16,7 @@ export default function LanguageCard({
   return (
     <Link
       href={href}
-      className="language-card"
+      className="language-card gap-6"
     >
       <Image
         src={flagUrl}

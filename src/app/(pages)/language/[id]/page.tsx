@@ -1,36 +1,59 @@
+import ActionCard from "@/components/card/ActionCard";
 import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
+import { COLORS } from "@/const/ui";
 import { getLanguageName } from "@/utils/getLanguage";
+import { ArrowBigRight, Dumbbell, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function LanguageMenu({ params }: { params: { id: string } }) {
+export default async function LanguageMenu({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = await params;
   const language = getLanguageName(id);
-  
+
   if (!id || !language) return <div>No language found</div>;
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
-      <Title>Liste des actions pour la langue : {language}</Title>
-      <Image
-        src={`/assets/flags/${id}.png`}
-        alt={`Drapeau de ${language}`}
-        width={100}
-        height={100}
-      />
-      <ul className="flex gap-4">
+    <div className="flex flex-col gap-20 items-center justify-center">
+      <div className="flex justify-center gap-6 w-full">
+        <Image
+          src={`/assets/flags/${id}.png`}
+          alt={`Drapeau de ${language}`}
+          width={40}
+          height={40}
+        />
+        <Title>Hey! Prêt à travailler ton {language} ?</Title>
+      </div>
+      <ul className="flex gap-8">
         <li>
-          <Link href={`/flashcards/create/${id}`}>
-            <Button>Create Flashcards</Button>
-          </Link>
+          <ActionCard href={`/flashcards/${id}/create`} type="creation">
+            <Lightbulb size={64} color={COLORS.creation} />
+            <span className="font-bold">Mode Création</span>
+          </ActionCard>
         </li>
         <li>
-          <Link href={`/flashcards/${id}`}>
-            <Button>All Flashcards</Button>
-          </Link>
+          <ActionCard href={`/language/${id}/train/`} type="training">
+            <Dumbbell size={64} color={COLORS.training} />
+            <span className="font-bold">Mode Entraînement</span>
+          </ActionCard>
+        </li>
+        <li>
+          <ActionCard href={`/language/${id}/test`} type="test">
+            <Dumbbell size={64} color={COLORS.test} />
+            <span className="font-bold">Mode Révision</span>
+          </ActionCard>
         </li>
       </ul>
+      <Link href={`/flashcards/${id}`}>
+        <Button className="flex items-center gap-2 creation-color--reverse">
+          <ArrowBigRight />
+          <p>Gérer les flashcards</p>
+        </Button>
+      </Link>
     </div>
   );
 }
