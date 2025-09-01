@@ -34,7 +34,7 @@ export default async function RootLayout({
             <header className="p-4">
               <Header />
             </header>
-            <main className="flex-1 flex items-center justify-center overflow-auto">
+            <main className="flex-1 flex items-center justify-center p-4">
               {children}
             </main>
             <footer className="flex justify-center bottom-0">
