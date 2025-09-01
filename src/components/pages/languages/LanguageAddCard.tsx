@@ -4,13 +4,13 @@ import { languages } from "@/data/languages";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 
-const LanguageAddCard = ({
+export default function LanguageAddCard({
   targetLanguages,
   addTargetLanguages: addTargetLanguages,
 }: {
   targetLanguages: string[];
   addTargetLanguages: (language: string) => void;
-}) => {
+}) {
   const [showSelect, setShowSelect] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
 
@@ -53,6 +53,4 @@ const LanguageAddCard = ({
       )}
     </div>
   );
-};
-
-export default LanguageAddCard;
+}

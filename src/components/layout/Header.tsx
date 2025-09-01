@@ -3,7 +3,7 @@ import { delius } from "@/fonts/delius";
 import Link from "next/link";
 import NavBar from "@/components/layout/NavBar";
 
-const Header = () => {
+export default function Header() {
   return (
     <header className="p-4">
       <div className="flex items-center justify-between pr-2">
@@ -25,6 +25,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}

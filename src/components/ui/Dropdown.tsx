@@ -7,12 +7,12 @@ type DropdownProps = {
   placeholder?: string;
 };
 
-const Dropdown = ({
+export default function Dropdown({
   options,
   value,
   onChange,
   placeholder = "Choisir une catégorie",
-}: DropdownProps) => {
+}: DropdownProps) {
   return (
     <div className="relative w-full">
       <select
@@ -34,6 +34,4 @@ const Dropdown = ({
       </div>
     </div>
   );
-};
-
-export default Dropdown;
+}

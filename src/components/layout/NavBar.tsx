@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SignOutButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@/services/clerk/components/SignInStatus";
 
-const NavBar = () => {
+export default function NavBar() {
   return (
     <div className="flex flex-col items-center gap-4">
       <SignedOut>
@@ -21,6 +21,4 @@ const NavBar = () => {
       </SignedIn>
     </div>
   );
-};
-
-export default NavBar;
+}

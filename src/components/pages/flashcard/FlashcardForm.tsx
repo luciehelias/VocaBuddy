@@ -9,7 +9,11 @@ import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
 import { categories } from "@/data/languages";
 
-const FlashcardForm = ({ languageCode }: { languageCode: string }) => {
+export default function FlashcardForm({
+  languageCode,
+}: {
+  languageCode: string;
+}) {
   const { createFlashcard } = useFlashcards();
 
   const [nativeWord, setNativeWord] = useState("");
@@ -64,6 +68,4 @@ const FlashcardForm = ({ languageCode }: { languageCode: string }) => {
       </Button>
     </div>
   );
-};
-
-export default FlashcardForm;
+}
