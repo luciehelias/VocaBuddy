@@ -13,7 +13,7 @@ export default function Button({
 
   const variants = {
     auth: "border-2 uppercase text-sm w-38 rounded-md hover:bg-black hover:text-white",
-    primary: "border-2 uppercase rounded-xl hover:bg-emerald-200",
+    primary: "border-2 uppercase rounded-xl",
     submit:
       "border-1 bg-emerald-200 w-full uppercase rounded-xl hover:bg-emerald-300 ",
     option: "flex justify-center gap-2",

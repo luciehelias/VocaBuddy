@@ -1,7 +1,8 @@
+import ActionCard from "@/components/card/ActionCard";
 import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 import { getLanguageName } from "@/utils/getLanguage";
-import { ArrowBigRight, BicepsFlexed, Dumbbell, Lightbulb } from "lucide-react";
+import { ArrowBigRight, Dumbbell, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,32 +29,26 @@ export default async function LanguageMenu({
       </div>
       <ul className="flex gap-8">
         <li>
-          <Link href={`/flashcards/${id}/create`}>
-            <Button variant="icon" className="create-color">
-              <Lightbulb size={64} color={"#FFD5A6"} />
-              <span className="font-bold">Mode Création</span>
-            </Button>
-          </Link>
+          <ActionCard href={`/flashcards/${id}/create`} type="creation">
+            <Lightbulb size={64} color={"#FFD5A6"} />
+            <span className="font-bold">Mode Création</span>
+          </ActionCard>
         </li>
         <li>
-          <Link href={`/language/${id}/train/`}>
-            <Button variant="icon" className="train-color">
-              <Dumbbell size={64} color={"#BFDBFF"} />
-              <span className="font-bold">Mode Entraînement</span>
-            </Button>
-          </Link>
+          <ActionCard href={`/language/${id}/train/`} type="training">
+            <Dumbbell size={64} color={"#BFDBFF"} />
+            <span className="font-bold">Mode Entraînement</span>
+          </ActionCard>
         </li>
         <li>
-          <Link href={`/language/${id}/test`}>
-            <Button variant="icon" className="test-color">
-              <BicepsFlexed size={64} color={"#FFCCD3"} />
-              <span className="font-bold">Mode Révision</span>
-            </Button>
-          </Link>
+          <ActionCard href={`/language/${id}/test`} type="test">
+            <Dumbbell size={64} color={"#FFCCD3"} />
+            <span className="font-bold">Mode Révision</span>
+          </ActionCard>
         </li>
       </ul>
       <Link href={`/flashcards/${id}`}>
-        <Button className="flex items-center gap-2">
+        <Button className="flex items-center gap-2 creation-color--reverse">
           <ArrowBigRight />
           <p>Gérer les flashcards</p>
         </Button>
