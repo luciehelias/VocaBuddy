@@ -35,11 +35,9 @@ export default async function RootLayout({
             <main className="flex-1 flex items-center justify-center overflow-auto">
               {children}
             </main>
-            <footer className="flex justify-center bottom-0">
-              <Footer />
-            </footer>
           </UserProvider>
         </ClerkProvider>
+        <Footer />
       </body>
     </html>
   );
