@@ -4,19 +4,19 @@ import { languages } from "@/data/languages";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 
-const LanguageAddCard = ({
+export default function LanguageAddCard({
   targetLanguages,
-  addTargetLanguage: addTargetLanguage,
+  addTargetLanguages: addTargetLanguages,
 }: {
   targetLanguages: string[];
-  addTargetLanguage: (language: string) => void;
-}) => {
+  addTargetLanguages: (language: string) => void;
+}) {
   const [showSelect, setShowSelect] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
 
   const handleSubmit = () => {
     if (selectedLang) {
-      addTargetLanguage(languages.find((e) => e.name === selectedLang)!.code);
+      addTargetLanguages(languages.find((e) => e.name === selectedLang)!.code);
       setSelectedLang("");
       setShowSelect(false);
     }
@@ -53,6 +53,4 @@ const LanguageAddCard = ({
       )}
     </div>
   );
-};
-
-export default LanguageAddCard;
+}

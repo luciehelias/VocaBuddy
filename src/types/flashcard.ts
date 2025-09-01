@@ -3,7 +3,7 @@ export interface IFlashcard {
   userId: string;
   nativeWord: string;
   translatedWord: string;
-  targetLanguage: string;
+  targetLanguages: string;
   category: string;
   exampleSentence?: string;
   imageUrl?: string;

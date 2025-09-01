@@ -4,13 +4,13 @@ import Title from "@/ui/Title";
 import { languages } from "@/data/languages";
 import { IFlashcard } from "@/types/flashcard";
 import { useTargetLanguages } from "@/hooks/useTargetLanguages";
-import LanguageAddCard from "@/components/pages/languages/LanguageAddCard";
-import LanguageCard from "@/components/pages/languages/LanguageCard";
+import LanguageAddCard from "@/components/card/LanguageAddCard";
+import LanguageCard from "@/components/card/LanguageCard";
 import { IUser } from "@/types/user";
 
 const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
   return user?.flashcards.some(
-    (flashcard: IFlashcard) => flashcard.targetLanguage === languageCode
+    (flashcard: IFlashcard) => flashcard.targetLanguages === languageCode
   );
 };
 
@@ -22,8 +22,8 @@ const getHref = (langCode: string, user: IUser | null): string => {
 };
 
 export default function LanguagesPage({ user }: { user: IUser | null }) {
-  const { targetLanguages, addTargetLanguage } = useTargetLanguages(
-    user?.targetLanguage
+  const { targetLanguages, addTargetLanguages } = useTargetLanguages(
+    user?.targetLanguages
   );
 
   const languagesToLearn = targetLanguages.length
@@ -44,7 +44,7 @@ export default function LanguagesPage({ user }: { user: IUser | null }) {
         ))}
         <LanguageAddCard
           targetLanguages={targetLanguages}
-          addTargetLanguage={addTargetLanguage}
+          addTargetLanguages={addTargetLanguages}
         />
       </div>
     </div>

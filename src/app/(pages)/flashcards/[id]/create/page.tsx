@@ -1,4 +1,4 @@
-import FlashcardForm from "@/components/pages/flashcard/FlashcardForm";
+import FlashcardForm from "@/components/form/FlashcardForm";
 import Title from "@/components/ui/Title";
 import { getLanguageName } from "@/utils/getLanguage";
 import Image from "next/image";

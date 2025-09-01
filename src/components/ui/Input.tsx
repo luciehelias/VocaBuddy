@@ -6,7 +6,12 @@ type InputProps = {
   className?: string;
 };
 
-const Input = ({ value, onChange, placeholder, type = "text" }: InputProps) => {
+export default function Input({
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}: InputProps) {
   return (
     <input
       type={type}
@@ -16,6 +21,4 @@ const Input = ({ value, onChange, placeholder, type = "text" }: InputProps) => {
       className="bg-white p-2 rounded-2xl border border-gray-300 w-full"
     />
   );
-};
-
-export default Input;
+}

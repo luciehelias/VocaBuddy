@@ -33,7 +33,7 @@ export const useAvatar = (initialAvatarUrl?: string) => {
     try {
       const base64 = await fileToBase64(file);
 
-      const uploadResponse = await fetch("/api/users/avatar", {
+      const uploadResponse = await fetch("/api/user/avatar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageBase64: base64, userId: user.clerkId }),
@@ -41,7 +41,7 @@ export const useAvatar = (initialAvatarUrl?: string) => {
       const uploadData = await uploadResponse.json();
       const newAvatarUrl = uploadData.url;
 
-      const patchResponse = await fetch("/api/users", {
+      const patchResponse = await fetch("/api/user", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ avatarUrl: newAvatarUrl }),

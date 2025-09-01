@@ -5,7 +5,7 @@ type TitleProps = {
   variant?: "sm" | "lg" | "flashcard";
 };
 
-const Title = ({ children, variant = "sm" }: TitleProps) => {
+export default function Title({ children, variant = "sm" }: TitleProps) {
   const variants = {
     sm: "text-3xl font-bold text-center",
     lg: "text-5xl font-bold text-center",
@@ -13,6 +13,4 @@ const Title = ({ children, variant = "sm" }: TitleProps) => {
   };
 
   return <h1 className={`${variants[variant]}`}>{children}</h1>;
-};
-
-export default Title;
+}
