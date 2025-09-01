@@ -31,9 +31,7 @@ export default async function RootLayout({
       >
         <ClerkProvider>
           <UserProvider user={user}>
-            <header className="p-4">
-              <Header />
-            </header>
+            <Header />
             <main className="flex-1 flex items-center justify-center overflow-auto">
               {children}
             </main>
