@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
-import { categories } from "@/data/languages";
+import { CATEGORIES } from "@/const/flashcards";
 
 export default function FlashcardForm({
   languageCode,
@@ -57,7 +57,7 @@ export default function FlashcardForm({
         </Button>
         {showSelect && (
           <Dropdown
-            options={categories}
+            options={CATEGORIES}
             value={category}
             onChange={setCategory}
           />

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
 import Button from "@/components/ui/Button";
-import { languages } from "@/data/languages";
+import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
 import { useTargetLanguages } from "@/hooks/useTargetLanguages";
 import { useNativeLanguage } from "@/hooks/useNativeLanguage";
@@ -40,12 +40,12 @@ export default function ProfileSetup() {
       }
       if (selectedTargetLang) {
         await addTargetLanguages(
-          languages.find((e) => e.name === selectedTargetLang)!.code
+          LANGUAGES.find((e) => e.name === selectedTargetLang)!.code
         );
       }
       if (selectedNativeLang) {
         await addNativeLanguage(
-          languages.find((e) => e.name === selectedNativeLang)!.code
+          LANGUAGES.find((e) => e.name === selectedNativeLang)!.code
         );
       }
       setError("");
@@ -95,7 +95,7 @@ export default function ProfileSetup() {
       <div className="flex flex-col gap-4">
         <p className="text-xl">Quelle est votre langue maternelle ?</p>
         <Dropdown
-          options={languages
+          options={LANGUAGES
             .filter((l) => !nativeLanguage.includes(l.code))
             .map((l) => l.name)}
           value={selectedNativeLang}
@@ -111,7 +111,7 @@ export default function ProfileSetup() {
           Quelle langue voulez-vous apprendre en premier ?
         </p>
         <Dropdown
-          options={languages
+          options={LANGUAGES
             .filter((l) => !targetLanguages.includes(l.code))
             .map((l) => l.name)}
           value={selectedTargetLang}

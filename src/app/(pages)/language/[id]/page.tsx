@@ -1,6 +1,7 @@
 import ActionCard from "@/components/card/ActionCard";
 import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
+import { COLORS } from "@/const/ui";
 import { getLanguageName } from "@/utils/getLanguage";
 import { ArrowBigRight, Dumbbell, Lightbulb } from "lucide-react";
 import Image from "next/image";
@@ -30,19 +31,19 @@ export default async function LanguageMenu({
       <ul className="flex gap-8">
         <li>
           <ActionCard href={`/flashcards/${id}/create`} type="creation">
-            <Lightbulb size={64} color={"#FFD5A6"} />
+            <Lightbulb size={64} color={COLORS.creation} />
             <span className="font-bold">Mode Création</span>
           </ActionCard>
         </li>
         <li>
           <ActionCard href={`/language/${id}/train/`} type="training">
-            <Dumbbell size={64} color={"#BFDBFF"} />
+            <Dumbbell size={64} color={COLORS.training} />
             <span className="font-bold">Mode Entraînement</span>
           </ActionCard>
         </li>
         <li>
           <ActionCard href={`/language/${id}/test`} type="test">
-            <Dumbbell size={64} color={"#FFCCD3"} />
+            <Dumbbell size={64} color={COLORS.test} />
             <span className="font-bold">Mode Révision</span>
           </ActionCard>
         </li>
