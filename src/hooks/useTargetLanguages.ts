@@ -7,7 +7,7 @@ export const useTargetLanguages = (initialLanguages: string[] = []) => {
     if (!language) return;
 
     try {
-      const res = await fetch("/api/users", {
+      const res = await fetch("/api/user", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ targetLanguages: [language] }),
