@@ -26,3 +26,15 @@
 img {
   @apply w-auto object-contain;
 }
+
+.create-color {
+  @apply   border-orange-300 bg-orange-300 hover:text-orange-300 hover:bg-transparent ;
+}
+
+.train-color {
+  @apply border-blue-300 bg-blue-300 hover:text-blue-300 hover:bg-transparent ;
+}
+
+.test-color {
+  @apply border-rose-300 bg-rose-300 hover:text-rose-300 hover:bg-transparent ;
+}
