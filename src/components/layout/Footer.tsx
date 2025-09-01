@@ -1,6 +1,6 @@
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className="p-4 text-lg">
+    <footer className="flex justify-center bottom-0 p-8 text-m">
       <p>
         © 2025 VocaBuddy — Developped by{" "}
         <a
@@ -19,8 +19,6 @@ const Footer = () => {
           Lucie Hélias
         </a>
       </p>
-    </div>
+    </footer>
   );
-};
-
-export default Footer;
+}

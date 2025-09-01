@@ -3,12 +3,12 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-const Button = ({
+export default function Button({
   children,
   variant = "primary",
   className = "",
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   const baseStyle = "p-2 cursor-pointer";
 
   const variants = {
@@ -28,6 +28,4 @@ const Button = ({
       {children}
     </button>
   );
-};
-
-export default Button;
+}

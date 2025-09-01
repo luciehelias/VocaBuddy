@@ -20,8 +20,8 @@ export default function ProfileSetup() {
   const { nativeLanguage, addNativeLanguage } = useNativeLanguage(
     user?.nativeLanguage ?? ""
   );
-  const { targetLanguages, addTargetLanguage } = useTargetLanguages(
-    user?.targetLanguage ?? []
+  const { targetLanguages, addTargetLanguages } = useTargetLanguages(
+    user?.targetLanguages ?? []
   );
   const { avatarUrl, file, selectFile, uploadAvatar } = useAvatar(
     user?.avatarUrl
@@ -39,7 +39,7 @@ export default function ProfileSetup() {
         await uploadAvatar();
       }
       if (selectedTargetLang) {
-        await addTargetLanguage(
+        await addTargetLanguages(
           languages.find((e) => e.name === selectedTargetLang)!.code
         );
       }

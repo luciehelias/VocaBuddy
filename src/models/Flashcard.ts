@@ -4,7 +4,7 @@ export interface IFlashcard extends Document {
   userId: mongoose.Types.ObjectId;
   nativeWord: string;
   translatedWord: string;
-  targetLanguage: string;
+  targetLanguages: string;
   category?: string;
   exampleSentence?: string;
   imageUrl?: string;
@@ -30,7 +30,7 @@ const flashcardSchema = new Schema<IFlashcard>(
       required: true,
       trim: true,
     },
-    targetLanguage: {
+    targetLanguages: {
       type: String,
       required: true,
       trim: true,
@@ -38,7 +38,7 @@ const flashcardSchema = new Schema<IFlashcard>(
     category: {
       type: String,
       trim: true,
-      default: "Autres"
+      default: "Autres",
     },
     exampleSentence: {
       type: String,

@@ -8,7 +8,7 @@ export interface IUser {
   username: string;
   avatarUrl?: string;
   nativeLanguage?: string;
-  targetLanguage?: string[];
+  targetLanguages?: string[];
   createdAt: string;
   settings: {
     theme: "light" | "dark";
@@ -23,7 +23,7 @@ export interface IUserDB extends Document {
   username: string;
   avatarUrl?: string;
   nativeLanguage?: string;
-  targetLanguage?: string[];
+  targetLanguages?: string[];
   createdAt: Date;
   settings: {
     theme: "light" | "dark";

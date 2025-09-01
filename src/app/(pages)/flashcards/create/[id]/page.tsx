@@ -1,9 +1,13 @@
-import FlashcardForm from "@/components/pages/flashcard/FlashcardForm";
+import FlashcardForm from "@/components/form/FlashcardForm";
 import Title from "@/components/ui/Title";
 import { getLanguageName } from "@/utils/getLanguage";
 import Image from "next/image";
 
-export default async function FlashcardPage({ params }: { params: { id: string } }) {
+export default async function FlashcardPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = await params;
   const language = getLanguageName(id);
 
