@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getLanguageName } from "@/utils/getLanguage";
+import { getLanguageName } from "@/utils/language";
 import FlashcardForm from "@/components/form/FlashcardForm";
 import Title from "@/ui/Title";
 

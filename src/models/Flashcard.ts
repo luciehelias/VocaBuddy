@@ -1,5 +1,5 @@
 import { CATEGORIES } from "@/const/flashcards";
-import { TWordCategory } from "@/types/categories";
+import { TWordCategory } from "@/types/category";
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface IFlashcard extends Document {

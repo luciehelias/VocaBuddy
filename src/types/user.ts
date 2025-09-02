@@ -1,5 +1,6 @@
 import { Document, ObjectId } from "mongoose";
-import { IFlashcard } from "./flashcard";
+import { TFlashcard } from "./flashcard";
+import { TLanguage } from "./language";
 
 // User interface for the client-side
 export interface IUser {
@@ -7,14 +8,14 @@ export interface IUser {
   id: string;
   username: string;
   avatarUrl?: string;
-  nativeLanguage?: string;
-  targetLanguages?: string[];
+  nativeLanguage?: TLanguage;
+  targetLanguages?: TLanguage[];
   createdAt: string;
   settings: {
     theme: "light" | "dark";
     notifications: boolean;
   };
-  flashcards: IFlashcard[];
+  flashcards: TFlashcard[];
 }
 
 // User interface sent to the database

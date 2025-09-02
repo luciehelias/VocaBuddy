@@ -6,9 +6,9 @@ import Title from "@/components/ui/Title";
 import Button from "@/components/ui/Button";
 import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
-import { useTargetLanguages } from "@/hooks/useTargetLanguages";
-import { useNativeLanguage } from "@/hooks/useNativeLanguage";
 import { useAvatar } from "@/hooks/useAvatar";
+import { updateUserLanguage } from "@/utils/updateUserLanguage";
+import { getUserTargetLanguageNames } from "@/utils/language";
 
 export default function ProfileSetup() {
   const user = useUserData();
@@ -17,15 +17,10 @@ export default function ProfileSetup() {
   const [selectedNativeLang, setSelectedNativeLang] = useState("");
   const [error, setError] = useState("");
   const [pictureName, setPictureName] = useState("Aucun fichier choisi");
-  const { nativeLanguage, addNativeLanguage } = useNativeLanguage(
-    user?.nativeLanguage ?? ""
-  );
-  const { targetLanguages, addTargetLanguages } = useTargetLanguages(
-    user?.targetLanguages ?? []
-  );
   const { avatarUrl, file, selectFile, uploadAvatar } = useAvatar(
     user?.avatarUrl
   );
+  const userTargetLanguages = getUserTargetLanguageNames(user?.targetLanguages);
 
   const handleSubmit = async () => {
     if (!selectedNativeLang || !selectedTargetLang) {
@@ -39,13 +34,14 @@ export default function ProfileSetup() {
         await uploadAvatar();
       }
       if (selectedTargetLang) {
-        await addTargetLanguages(
+        await updateUserLanguage(
           LANGUAGES.find((e) => e.name === selectedTargetLang)!.code
         );
       }
       if (selectedNativeLang) {
-        await addNativeLanguage(
-          LANGUAGES.find((e) => e.name === selectedNativeLang)!.code
+        await updateUserLanguage(
+          LANGUAGES.find((e) => e.name === selectedNativeLang)!.code,
+          true
         );
       }
       setError("");
@@ -96,7 +92,7 @@ export default function ProfileSetup() {
         <p className="text-xl">Quelle est votre langue maternelle ?</p>
         <Dropdown
           options={LANGUAGES
-            .filter((l) => !nativeLanguage.includes(l.code))
+            .filter((l) => !selectedNativeLang.includes(l.code))
             .map((l) => l.name)}
           value={selectedNativeLang}
           onChange={(value) => {
@@ -112,7 +108,7 @@ export default function ProfileSetup() {
         </p>
         <Dropdown
           options={LANGUAGES
-            .filter((l) => !targetLanguages.includes(l.code))
+            .filter((l) => !userTargetLanguages.includes(l.code))
             .map((l) => l.name)}
           value={selectedTargetLang}
           onChange={(value) => {
