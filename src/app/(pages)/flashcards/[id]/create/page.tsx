@@ -1,7 +1,7 @@
-import FlashcardForm from "@/components/form/FlashcardForm";
-import Title from "@/components/ui/Title";
-import { getLanguageName } from "@/utils/getLanguage";
 import Image from "next/image";
+import { getLanguageName } from "@/utils/getLanguage";
+import FlashcardForm from "@/components/form/FlashcardForm";
+import Title from "@/ui/Title";
 
 export default async function FlashcardPage({
   params,
@@ -14,8 +14,8 @@ export default async function FlashcardPage({
   if (!id || !language) return <div>No language found</div>;
 
   return (
-    <div className="flex flex-col gap-8 items-center justify-center">
-      <div className="flex gap-6 w-full">
+    <div className="flex flex-col gap-12 items-center justify-center w-full max-w-xl mx-auto">
+      <div className="flex gap-6 justify-center">
         <Image
           src={`/assets/flags/${id}.png`}
           alt={`Drapeau de ${language}`}
@@ -25,7 +25,7 @@ export default async function FlashcardPage({
         <Title>Yeah un nouveau mot !</Title>
       </div>
       <div className="w-full flex justify-center">
-        <FlashcardForm languageCode={id} />
+        <FlashcardForm languageCode={id} learningLanguage={language} />
       </div>
     </div>
   );
