@@ -28,17 +28,21 @@ img {
 }
 
 .creation-color {
-  @apply   border-orange-300 bg-orange-300 hover:text-orange-300 hover:bg-transparent ;
+  @apply border-orange-300 bg-orange-300 hover:text-orange-300 hover:bg-transparent;
 }
 
 .creation-color--reverse {
-  @apply   border-orange-300 text-orange-300 hover:bg-orange-300 hover:text-white ;
+  @apply border-orange-300 text-orange-300 hover:bg-orange-300 hover:text-white;
 }
 
 .training-color {
-  @apply border-blue-300 bg-blue-300 hover:text-blue-300 hover:bg-transparent ;
+  @apply border-blue-300 bg-blue-300 hover:text-blue-300 hover:bg-transparent;
 }
 
 .test-color {
-  @apply border-rose-300 bg-rose-300 hover:text-rose-300 hover:bg-transparent ;
+  @apply border-rose-300 bg-rose-300 hover:text-rose-300 hover:bg-transparent;
+}
+
+.nav {
+  @apply absolute flex flex-col right-0 top-full translate-y-2 w-50 border rounded-lg shadow-lg p-4 gap-4 bg-purple-50;
 }
