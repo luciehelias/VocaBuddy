@@ -6,6 +6,7 @@ import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
 import { LANGUAGES } from "@/const/languages";
+import { TWordCategory } from "@/types/categories";
 import Button from "@/ui/Button";
 import Dropdown from "@/ui/Dropdown";
 import Title from "@/ui/Title";
@@ -23,7 +24,7 @@ export default function FlashcardForm({
 
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<TWordCategory>("Autre");
   const [showSelect, setShowSelect] = useState(false);
 
   const nativeLanguageName =
@@ -42,7 +43,7 @@ export default function FlashcardForm({
     });
     setNativeWord("");
     setTranslatedWord("");
-    setCategory("");
+    setCategory("Autre");
   };
 
   return (
@@ -71,7 +72,9 @@ export default function FlashcardForm({
           <Dropdown
             options={CATEGORIES}
             value={category}
-            onChange={setCategory}
+            onChange={(selectedCategory) =>
+              setCategory(selectedCategory as TWordCategory)
+            }
           />
         )}
       </div>
