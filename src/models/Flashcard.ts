@@ -1,3 +1,5 @@
+import { CATEGORIES } from "@/const/flashcards";
+import { TWordCategory } from "@/types/categories";
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface IFlashcard extends Document {
@@ -5,7 +7,7 @@ export interface IFlashcard extends Document {
   nativeWord: string;
   translatedWord: string;
   targetLanguages: string;
-  category?: string;
+  category?: TWordCategory;
   exampleSentence?: string;
   imageUrl?: string;
   knowledgeScore: number;
@@ -38,7 +40,7 @@ const flashcardSchema = new Schema<IFlashcard>(
     category: {
       type: String,
       trim: true,
-      default: "Autres",
+      enum: CATEGORIES,
     },
     exampleSentence: {
       type: String,
