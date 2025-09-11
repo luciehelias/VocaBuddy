@@ -8,7 +8,6 @@ import { updateUserLanguage } from "@/app/actions/user";
 
 export default function LanguagesPage({ user }: { user: IUser }) {
 
-  console.log("User in LanguagesPage:", user);
     const getHref = (langCode: string, flashcards: TFlashcard[]): string => {
       return hasFlashcardsOfLanguage(langCode, flashcards)
       ? `/language/${langCode}`

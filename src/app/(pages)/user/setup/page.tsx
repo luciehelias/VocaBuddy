@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
 import { useAvatar } from "@/hooks/useAvatar";
-import { updateUserLanguage } from "@/utils/updateUserLanguage";
+import { updateUserLanguage } from "@/utils/updateUser";
 import { getUserTargetLanguageNames } from "@/utils/language";
 
 export default function ProfileSetup() {
