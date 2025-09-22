@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import Dropdown from "@/components/ui/Dropdown";
 import Title from "@/components/ui/Title";
 import Button from "@/components/ui/Button";
@@ -49,6 +50,7 @@ export default function ProfileSetup() {
         );
       }
       setError("");
+      toast.success("Bienvenue dans ton VocaBuddy !");
       router.push("/languages");
     } catch (err) {
       setError("Erreur lors de la mise à jour du profil.");
@@ -95,9 +97,9 @@ export default function ProfileSetup() {
       <div className="flex flex-col gap-4">
         <p className="text-xl">Quelle est votre langue maternelle ?</p>
         <Dropdown
-          options={LANGUAGES
-            .filter((l) => !nativeLanguage.includes(l.code))
-            .map((l) => l.name)}
+          options={LANGUAGES.filter(
+            (l) => !nativeLanguage.includes(l.code)
+          ).map((l) => l.name)}
           value={selectedNativeLang}
           onChange={(value) => {
             setSelectedNativeLang(value);
@@ -111,9 +113,9 @@ export default function ProfileSetup() {
           Quelle langue voulez-vous apprendre en premier ?
         </p>
         <Dropdown
-          options={LANGUAGES
-            .filter((l) => !targetLanguages.includes(l.code))
-            .map((l) => l.name)}
+          options={LANGUAGES.filter(
+            (l) => !targetLanguages.includes(l.code)
+          ).map((l) => l.name)}
           value={selectedTargetLang}
           onChange={(value) => {
             setSelectedTargetLang(value);

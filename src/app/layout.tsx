@@ -9,6 +9,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getUser } from "@/utils/getUser";
 import { UserProvider } from "@/contexts/userContext";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "VocaBuddy",
@@ -32,9 +33,8 @@ export default async function RootLayout({
         <ClerkProvider>
           <UserProvider user={user}>
             <Header />
-            <main className="flex-1 flex items-center justify-center p-4">
-              {children}
-            </main>
+            <main className="flex-1 flex items-center justify-center p-4">{children}</main>
+            <ToastContainer position="bottom-right" autoClose={3000} />
           </UserProvider>
         </ClerkProvider>
         <Footer />

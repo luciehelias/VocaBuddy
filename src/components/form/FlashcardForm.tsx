@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import { toast } from "react-toastify";
 import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
@@ -35,6 +36,10 @@ export default function FlashcardForm({
     LANGUAGES.find((lang) => lang.name === learningLanguage)?.code ?? "";
 
   const handleCreate = () => {
+    if (!nativeWord || !translatedWord) {
+      toast.error("Oups, je pense qu'il te manque des infos 😉");
+      return;
+    }
     createFlashcard({
       nativeWord,
       translatedWord,
@@ -44,6 +49,7 @@ export default function FlashcardForm({
     setNativeWord("");
     setTranslatedWord("");
     setCategory("Autre");
+    toast.success("Super, un nouveau mot à apprendre 💪 !");
   };
 
   return (
