@@ -1,22 +1,35 @@
+"use client";
+
+import { useState } from "react";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { LANGUAGES } from "@/const/languages";
+import { getExcludedLanguageNames } from "@/utils/language";
 import { CirclePlus } from "lucide-react";
-import { useState } from "react";
+import { IUser } from "@/types/user";
 
 export default function LanguageAddCard({
-  targetLanguages,
-  addTargetLanguages: addTargetLanguages,
+  user,
+  updateUserLanguage,
 }: {
-  targetLanguages: string[];
-  addTargetLanguages: (language: string) => void;
+  user: IUser;
+  updateUserLanguage: (
+    languageCode: string,
+    isNative?: boolean
+  ) => Promise<any>;
 }) {
   const [showSelect, setShowSelect] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
+  const excludedLanguages = getExcludedLanguageNames(
+    user?.nativeLanguage,
+    user?.targetLanguages
+  );
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedLang) {
-      addTargetLanguages(LANGUAGES.find((e) => e.name === selectedLang)!.code);
+      await updateUserLanguage(
+        LANGUAGES.find((e) => e.name === selectedLang)!.code
+      );
       setSelectedLang("");
       setShowSelect(false);
     }
@@ -37,9 +50,9 @@ export default function LanguageAddCard({
       {showSelect && (
         <div className="flex flex-col items-center gap-6">
           <Dropdown
-            options={LANGUAGES
-              .filter((l) => !targetLanguages.includes(l.code))
-              .map((l) => l.name)}
+            options={LANGUAGES.filter(
+              (l) => !excludedLanguages.includes(l.name)
+            ).map((l) => l.name)}
             value={selectedLang}
             onChange={setSelectedLang}
             placeholder="Ajoute une langue"

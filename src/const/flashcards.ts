@@ -1,4 +1,4 @@
-import { TWordCategory } from "@/types/categories";
+import { TWordCategory } from "@/types/category";
 
 export const CATEGORIES: TWordCategory[] = [
   "Verbe",

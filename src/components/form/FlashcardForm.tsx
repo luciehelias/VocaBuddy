@@ -5,8 +5,7 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
-import { LANGUAGES } from "@/const/languages";
-import { TWordCategory } from "@/types/categories";
+import { TWordCategory } from "@/types/category";
 import Button from "@/ui/Button";
 import Dropdown from "@/ui/Dropdown";
 import Title from "@/ui/Title";
@@ -27,13 +26,6 @@ export default function FlashcardForm({
   const [category, setCategory] = useState<TWordCategory>("Autre");
   const [showSelect, setShowSelect] = useState(false);
 
-  const nativeLanguageName =
-    LANGUAGES.find((lang) => lang.code === user?.nativeLanguage)?.name ??
-    "langue inconnue";
-
-  const learningLanguageCode =
-    LANGUAGES.find((lang) => lang.name === learningLanguage)?.code ?? "";
-
   const handleCreate = () => {
     createFlashcard({
       nativeWord,
@@ -46,19 +38,21 @@ export default function FlashcardForm({
     setCategory("Autre");
   };
 
+  if (!user || !user.nativeLanguage) return null;
+
   return (
     <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-8 items-center shadow-blue-200 w-full ">
       <Title variant="flashcard">Crée ta flashcard</Title>
       <div className="flex flex-col items-center gap-6 w-full ">
         <LanguageInputWithFlag
-          languageCode={learningLanguageCode}
+          languageCode={languageCode}
           languageName={learningLanguage}
           value={translatedWord}
           onChange={setTranslatedWord}
         />
         <LanguageInputWithFlag
-          languageCode={user?.nativeLanguage || ""}
-          languageName={nativeLanguageName}
+          languageCode={user.nativeLanguage.code}
+          languageName={user.nativeLanguage.name}
           value={nativeWord}
           onChange={setNativeWord}
         />

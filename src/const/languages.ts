@@ -1,4 +1,6 @@
-export const LANGUAGES = [
+import { TLanguage } from "@/types/language";
+
+export const LANGUAGES: TLanguage[] = [
   { code: "fr", name: "Français", flagUrl: "/assets/flags/fr.png" },
   { code: "en", name: "Anglais", flagUrl: "/assets/flags/en.png" },
   { code: "es", name: "Espagnol", flagUrl: "/assets/flags/es.png" },

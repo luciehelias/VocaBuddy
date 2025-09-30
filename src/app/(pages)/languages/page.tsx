@@ -1,51 +1,32 @@
-"use client";
-
 import Title from "@/ui/Title";
-import { LANGUAGES } from "@/const/languages";
-import { IFlashcard } from "@/types/flashcard";
-import { useTargetLanguages } from "@/hooks/useTargetLanguages";
+import { TFlashcard } from "@/types/flashcard";
 import LanguageAddCard from "@/components/card/LanguageAddCard";
 import LanguageCard from "@/components/card/LanguageCard";
 import { IUser } from "@/types/user";
+import { hasFlashcardsOfLanguage } from "@/utils/language";
+import { updateUserLanguage } from "@/app/actions/user";
 
-const hasFlashcardsOfLanguage = (languageCode: string, user: IUser) => {
-  return user?.flashcards.some(
-    (flashcard: IFlashcard) => flashcard.targetLanguages === languageCode
-  );
-};
+export default function LanguagesPage({ user }: { user: IUser }) {
 
-const getHref = (langCode: string, user: IUser | null): string => {
-  if (user && hasFlashcardsOfLanguage(langCode, user)) {
-    return `/language/${langCode}`;
-  }
-  return `/flashcards/${langCode}/create`;
-};
-
-export default function LanguagesPage({ user }: { user: IUser | null }) {
-  const { targetLanguages, addTargetLanguages } = useTargetLanguages(
-    user?.targetLanguages
-  );
-
-  const languagesToLearn = targetLanguages.length
-    ? LANGUAGES.filter((language) => targetLanguages.includes(language.code))
-    : [];
+    const getHref = (langCode: string, flashcards: TFlashcard[]): string => {
+      return hasFlashcardsOfLanguage(langCode, flashcards)
+      ? `/language/${langCode}`
+      : `/flashcards/${langCode}/create`;
+  };
 
   return (
     <div className="flex flex-col gap-12 items-center justify-center">
       <Title>Sélectionnez un langage à apprendre :</Title>
       <div className="flex flex-wrap gap-4 max-w-4xl justify-center">
-        {languagesToLearn.map((language) => (
+        {user?.targetLanguages?.map((language) => (
           <LanguageCard
             key={language.code}
             name={language.name}
             flagUrl={language.flagUrl}
-            href={getHref(language.code, user)}
+            href={getHref(language.code, user.flashcards)}
           />
         ))}
-        <LanguageAddCard
-          targetLanguages={targetLanguages}
-          addTargetLanguages={addTargetLanguages}
-        />
+        <LanguageAddCard user={user} updateUserLanguage={updateUserLanguage} />
       </div>
     </div>
   );

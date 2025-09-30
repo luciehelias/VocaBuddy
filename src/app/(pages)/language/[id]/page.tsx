@@ -2,7 +2,7 @@ import ActionCard from "@/components/card/ActionCard";
 import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 import { COLORS } from "@/const/ui";
-import { getLanguageName } from "@/utils/getLanguage";
+import { getLanguageName } from "@/utils/language";
 import { ArrowBigRight, Dumbbell, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

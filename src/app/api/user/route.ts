@@ -26,7 +26,7 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const { targetLanguages, nativeLanguage, avatarUrl } = body;
+    const { language, isNative, avatarUrl } = body;
 
     await connectToDatabase();
 
@@ -35,14 +35,14 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    if (targetLanguages) {
-      user.targetLanguages = [
-        ...(user.targetLanguages || []),
-        ...targetLanguages,
-      ];
+    if (isNative) {
+      user.nativeLanguage = language;
+    } else {
+      if (!user.targetLanguages?.includes(language)) {
+        user.targetLanguages?.push(language);
+      }
     }
 
-    if (nativeLanguage) user.nativeLanguage = nativeLanguage;
     if (avatarUrl) user.avatarUrl = avatarUrl;
 
     await user.save();

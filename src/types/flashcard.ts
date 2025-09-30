@@ -1,6 +1,6 @@
-import { TWordCategory } from "./categories";
+import { TWordCategory } from "./category";
 
-export interface IFlashcard {
+export type TFlashcard = {
   _id: string;
   userId: string;
   nativeWord: string;

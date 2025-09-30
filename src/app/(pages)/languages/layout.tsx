@@ -1,12 +1,12 @@
 import { getUser } from "@/utils/getUser";
 import LanguagesPage from "./page";
+import { redirect } from "next/navigation";
 
 export default async function languagesLayout() {
   const user = await getUser();
 
   if (!user) {
-    // Handle the case where user is missing
-    return <div>Error: User not found.</div>;
+    return redirect("/login");
   }
 
   return <LanguagesPage user={user} />;

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { IFlashcard } from "@/types/flashcard";
+import { TFlashcard } from "@/types/flashcard";
 
 export const useFlashcards = () => {
-  const [flashcards, setFlashcards] = useState<IFlashcard[]>([]);
+  const [flashcards, setFlashcards] = useState<TFlashcard[]>([]);
   const [selectedId, setSelectedId] = useState("");
 
   // fetch all the flashcards
@@ -15,7 +15,7 @@ export const useFlashcards = () => {
   };
 
   // create a new flashcard
-  const createFlashcard = async (flashcard: Partial<IFlashcard>) => {
+  const createFlashcard = async (flashcard: Partial<TFlashcard>) => {
     const res = await fetch("/api/flashcards", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,7 +47,7 @@ export const useFlashcards = () => {
   // Update a flashcard
   const updateFlashcard = async (
     id: string,
-    updatedData: Partial<IFlashcard>
+    updatedData: Partial<TFlashcard>
   ) => {
     const res = await fetch("/api/flashcards", {
       method: "PATCH",
