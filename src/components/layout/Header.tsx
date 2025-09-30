@@ -1,27 +1,19 @@
 import Image from "next/image";
 import { delius } from "@/fonts/delius";
 import Link from "next/link";
-import NavBar from "@/components/layout/NavBar";
+import ProfileMenu from "@/layout/ProfileMenu";
 
 export default function Header() {
   return (
     <header className="p-4">
       <div className="flex items-center justify-between pr-2">
         <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/assets/logo.png"
-            alt="logo vocabuddy"
-            width={100}
-            height={100}
-            priority
-          />
+          <Image src="/assets/logo.png" alt="logo vocabuddy" width={100} height={100} priority />
         </Link>
         <Link href="/" className="flex items-center gap-2">
-          <p className={`text-5xl font-bold p-4 ${delius.className}`}>
-            VocaBuddy
-          </p>
+          <p className={`text-5xl font-bold p-4 ${delius.className}`}>VocaBuddy</p>
         </Link>
-        <NavBar />
+        <ProfileMenu />
       </div>
     </header>
   );
