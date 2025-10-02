@@ -49,6 +49,13 @@ export default function LanguageAddCard({
       )}
       {showSelect && (
         <div className="flex flex-col items-center gap-6">
+          {selectedLang && (
+            <img
+              src={LANGUAGES.find((l) => l.name === selectedLang)?.flagUrl}
+              alt={`${selectedLang} flag`}
+              className="w-8 h-8 object-contain"
+            />
+          )}
           <Dropdown
             options={LANGUAGES.filter(
               (l) => !excludedLanguages.includes(l.name)

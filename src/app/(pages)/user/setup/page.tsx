@@ -59,41 +59,43 @@ export default function ProfileSetup() {
           Modifie ton avatar{" "}
           <span className="text-sm">(si tu le souhaites)</span>
         </p>
-        <img
-          src={avatarUrl || user?.avatarUrl}
-          alt="Avatar"
-          className="rounded-full w-18 h-18"
-        />
-        <div className="flex items-center gap-12 w-full">
-          <label
-            htmlFor="avatar"
-            className="cursor-pointer px-4 py-2 bg-emerald-200 border-1 rounded-xl hover:bg-emerald-300"
-          >
-            Choisir ta photo de profil
-          </label>
-          <input
-            id="avatar"
-            type="file"
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                selectFile(e.target.files[0]);
-                setPictureName(e.target.files[0].name);
-              } else {
-                setPictureName("Aucun fichier choisi");
-              }
-            }}
-            accept="image/*"
-            className="hidden"
+        <div className="flex flex-col items-center gap-4">
+          <img
+            src={avatarUrl || user?.avatarUrl}
+            alt="Avatar"
+            className="avatar rounded-full w-18 h-18"
           />
-          <p className="text-gray-500">{pictureName}</p>
+          <div className="flex items-center justify-center gap-12 w-full">
+            <label
+              htmlFor="avatar"
+              className="cursor-pointer px-4 py-2 bg-emerald-200 border-1 rounded-xl hover:bg-emerald-300"
+            >
+              Choisir ta photo de profil
+            </label>
+            <input
+              id="avatar"
+              type="file"
+              onChange={(e) => {
+                if (e.target.files && e.target.files.length > 0) {
+                  selectFile(e.target.files[0]);
+                  setPictureName(e.target.files[0].name);
+                } else {
+                  setPictureName("Aucun fichier choisi");
+                }
+              }}
+              accept="image/*"
+              className="hidden"
+            />
+            <p className="text-gray-500">{pictureName}</p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-xl">Quelle est votre langue maternelle ?</p>
         <Dropdown
-          options={LANGUAGES
-            .filter((l) => !selectedNativeLang.includes(l.code))
-            .map((l) => l.name)}
+          options={LANGUAGES.filter(
+            (l) => !selectedNativeLang.includes(l.code)
+          ).map((l) => l.name)}
           value={selectedNativeLang}
           onChange={(value) => {
             setSelectedNativeLang(value);
@@ -107,9 +109,9 @@ export default function ProfileSetup() {
           Quelle langue voulez-vous apprendre en premier ?
         </p>
         <Dropdown
-          options={LANGUAGES
-            .filter((l) => !userTargetLanguages.includes(l.code))
-            .map((l) => l.name)}
+          options={LANGUAGES.filter(
+            (l) => !userTargetLanguages.includes(l.code)
+          ).map((l) => l.name)}
           value={selectedTargetLang}
           onChange={(value) => {
             setSelectedTargetLang(value);

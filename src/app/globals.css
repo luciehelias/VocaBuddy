@@ -19,7 +19,7 @@
   }
 } */
 
-img {
+img:not(.avatar) {
   @apply w-auto object-contain;
 }
 
