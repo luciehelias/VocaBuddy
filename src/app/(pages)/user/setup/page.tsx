@@ -51,6 +51,15 @@ export default function ProfileSetup() {
     }
   };
 
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      selectFile(e.target.files[0]);
+      setPictureName(e.target.files[0].name);
+    } else {
+      setPictureName("Aucun fichier choisi");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-12 border-1 p-12 rounded-2xl">
       <Title>Complétez votre profil de VocaBuddy</Title>
@@ -75,14 +84,7 @@ export default function ProfileSetup() {
             <input
               id="avatar"
               type="file"
-              onChange={(e) => {
-                if (e.target.files && e.target.files.length > 0) {
-                  selectFile(e.target.files[0]);
-                  setPictureName(e.target.files[0].name);
-                } else {
-                  setPictureName("Aucun fichier choisi");
-                }
-              }}
+              onChange={handleAvatarChange}
               accept="image/*"
               className="hidden"
             />
