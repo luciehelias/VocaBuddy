@@ -19,7 +19,8 @@
   }
 } */
 
-img:not(.avatar) {
+img:not(.avatar),
+img:not(.flag) {
   @apply w-auto object-contain;
 }
 
