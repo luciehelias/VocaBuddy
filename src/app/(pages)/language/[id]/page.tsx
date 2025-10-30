@@ -1,11 +1,10 @@
 import ActionCard from "@/components/card/ActionCard";
-import Button from "@/components/ui/Button";
+import LinkButton from "@/components/ui/LinkButton";
 import Title from "@/components/ui/Title";
 import { COLORS } from "@/const/ui";
 import { getLanguageName } from "@/utils/language";
-import { ArrowBigRight, BicepsFlexed, Dumbbell, Lightbulb } from "lucide-react";
+import { Dumbbell, BicepsFlexed, Lightbulb } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default async function LanguageMenu({
   params,
@@ -48,12 +47,7 @@ export default async function LanguageMenu({
           </ActionCard>
         </li>
       </ul>
-      <Link href={`/flashcards/${id}`}>
-        <Button className="flex items-center gap-2 creation-color--reverse">
-          <ArrowBigRight />
-          <p>Gérer les flashcards</p>
-        </Button>
-      </Link>
+      <LinkButton href={`/flashcards/${id}`} text="Gérer les flashcards" />
     </div>
   );
 }
