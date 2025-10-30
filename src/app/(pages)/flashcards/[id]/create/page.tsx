@@ -2,6 +2,8 @@ import Image from "next/image";
 import { getLanguageName } from "@/utils/language";
 import FlashcardForm from "@/components/form/FlashcardForm";
 import Title from "@/ui/Title";
+import Link from "next/link";
+import { ArrowBigRight } from "lucide-react";
 
 export default async function FlashcardPage({
   params,
@@ -27,6 +29,10 @@ export default async function FlashcardPage({
       <div className="w-full flex justify-center">
         <FlashcardForm languageCode={id} learningLanguage={language} />
       </div>
+      <Link href={`/language/${id}`} className="hover:font-bold flex gap-4">
+        <ArrowBigRight />
+        <p>Je suis prêt à travailler mon {language} !</p>
+      </Link>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 import { COLORS } from "@/const/ui";
 import { getLanguageName } from "@/utils/language";
-import { ArrowBigRight, Dumbbell, Lightbulb } from "lucide-react";
+import { ArrowBigRight, BicepsFlexed, Dumbbell, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ export default async function LanguageMenu({
         </li>
         <li>
           <ActionCard href={`/language/${id}/test`} type="test">
-            <Dumbbell size={64} color={COLORS.test} />
+            <BicepsFlexed size={64} color={COLORS.test} />
             <span className="font-bold">Mode Révision</span>
           </ActionCard>
         </li>
