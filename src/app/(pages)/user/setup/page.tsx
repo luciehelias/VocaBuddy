@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Dropdown from "@/components/ui/Dropdown";
-import Title from "@/components/ui/Title";
-import Button from "@/components/ui/Button";
+import { Title, Button, Dropdown } from "@/ui";
 import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
 import { useAvatar } from "@/hooks/useAvatar";

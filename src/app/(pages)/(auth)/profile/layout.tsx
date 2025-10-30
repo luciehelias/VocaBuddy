@@ -1,5 +1,5 @@
-import Button from "@/components/ui/Button";
-import Title from "@/components/ui/Title";
+import { Title, Button } from "@/ui";
+
 import Link from "next/link";
 
 export default function ClerkLayout({

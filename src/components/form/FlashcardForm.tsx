@@ -6,11 +6,7 @@ import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
 import { TWordCategory } from "@/types/category";
-import Button from "@/ui/Button";
-import Dropdown from "@/ui/Dropdown";
-import Title from "@/ui/Title";
-import LanguageInputWithFlag from "@/ui/LanguageInputWithFlag";
-import Input from "../ui/Input";
+import { Dropdown, Title, LanguageInputWithFlag, Input, Button } from "@/ui";
 
 export default function FlashcardForm({
   languageCode,
@@ -34,7 +30,7 @@ export default function FlashcardForm({
       translatedWord,
       targetLanguages: languageCode,
       category,
-      exampleSentence: exampleSentence,
+      exampleSentence,
     });
     setNativeWord("");
     setTranslatedWord("");
@@ -79,7 +75,8 @@ export default function FlashcardForm({
               }
             />
             <p className="underline underline-offset-4">
-              Choisis une phrase pour illustrer ton mot :
+              Ecris une phrase en {learningLanguage.toLowerCase()} pour
+              illustrer ton mot :
             </p>
             <Input
               placeholder="Phrase exemple"

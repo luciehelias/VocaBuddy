@@ -1,4 +1,4 @@
-import Title from "@/components/ui/Title";
+import { Title } from "@/ui";
 import Link from "next/link";
 
 export default function ClerkLayout({

@@ -1,4 +1,5 @@
-import Button from "@/components/ui/Button";
+import { Button } from "@/ui";
+
 import Link from "next/link";
 
 type ActionType = "creation" | "training" | "test";

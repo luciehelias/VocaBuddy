@@ -1,4 +1,4 @@
-import Title from "@/ui/Title";
+import { Title } from "@/ui";
 import { TFlashcard } from "@/types/flashcard";
 import LanguageAddCard from "@/components/card/LanguageAddCard";
 import LanguageCard from "@/components/card/LanguageCard";
@@ -7,9 +7,8 @@ import { hasFlashcardsOfLanguage } from "@/utils/language";
 import { updateUserLanguage } from "@/app/actions/user";
 
 export default function LanguagesPage({ user }: { user: IUser }) {
-
-    const getHref = (langCode: string, flashcards: TFlashcard[]): string => {
-      return hasFlashcardsOfLanguage(langCode, flashcards)
+  const getHref = (langCode: string, flashcards: TFlashcard[]): string => {
+    return hasFlashcardsOfLanguage(langCode, flashcards)
       ? `/language/${langCode}`
       : `/flashcards/${langCode}/create`;
   };
