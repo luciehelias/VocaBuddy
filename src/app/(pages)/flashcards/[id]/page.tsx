@@ -3,6 +3,7 @@
 import { Title, Button, ManageFlashcardRow } from "@/ui";
 import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
+import { TFlashcard } from "@/types/flashcard";
 import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 
@@ -26,14 +27,19 @@ export default function ManageFlashcards({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadFlashcards() {
+    async function loadUserFlashcards() {
       try {
-        const res = await fetch("/api/flashcards");
-        if (!res.ok) {
-          throw new Error("Erreur lors du chargement");
-        }
+        const res = await fetch("/api/user");
+        if (!res.ok)
+          throw new Error("Erreur lors du chargement de l'utilisateur");
+
         const data = await res.json();
-        setFlashcards(data);
+
+        const userFlashcards = data.flashcards.filter(
+          (flashcards: TFlashcard) => flashcards.targetLanguages === id
+        );
+
+        setFlashcards(userFlashcards);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -41,8 +47,8 @@ export default function ManageFlashcards({
       }
     }
 
-    loadFlashcards();
-  }, []);
+    loadUserFlashcards();
+  }, [id]);
 
   if (!id) return <div>No language found</div>;
   if (loading) return <div>Chargement...</div>;

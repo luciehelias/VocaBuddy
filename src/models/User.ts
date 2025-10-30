@@ -15,6 +15,12 @@ const userSchema = new Schema<IUserDB>({
     theme: { type: String, enum: ["light", "dark"], default: "light" },
     notifications: { type: Boolean, default: true },
   },
+  flashcards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Flashcard",
+    },
+  ],
 });
 
 // Reuse the existing model if it has already been compiled by Mongoose.
