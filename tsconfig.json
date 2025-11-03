@@ -26,7 +26,7 @@
       "@/types/*": ["src/types/*"],
       "@/models/*": ["src/models/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/ui/*": ["src/components/ui/*"],
+      "@/ui": ["src/components/ui"],
       "@/layout/*": ["src/components/layout/*"],
       "@/services/*": ["src/services/*"],
       "@/data/*": ["src/data/*"],

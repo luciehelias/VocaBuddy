@@ -6,7 +6,8 @@ import { Settings } from "lucide-react";
 import { SignedOut } from "@/services/clerk/components/SignInStatus";
 import { useAvatar } from "@/hooks/useAvatar";
 import { useUserData } from "@/contexts/userContext";
-import Button from "@/components/ui/Button";
+import { Button } from "@/ui";
+
 import SettingsNav from "@/layout/SettingsNav";
 
 export default function ProfileMenu() {

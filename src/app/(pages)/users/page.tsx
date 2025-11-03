@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IUser } from "@/types/user";
-import Title from "@/components/ui/Title";
+import { Title } from "@/ui";
 
 export default function HomePage() {
   const [users, setUsers] = useState<IUser[] | null>(null);

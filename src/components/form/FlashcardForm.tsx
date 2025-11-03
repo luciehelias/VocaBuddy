@@ -6,10 +6,7 @@ import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
 import { TWordCategory } from "@/types/category";
-import Button from "@/ui/Button";
-import Dropdown from "@/ui/Dropdown";
-import Title from "@/ui/Title";
-import LanguageInputWithFlag from "@/ui/LanguageInputWithFlag";
+import { Dropdown, Title, LanguageInputWithFlag, Input, Button } from "@/ui";
 
 export default function FlashcardForm({
   languageCode,
@@ -23,6 +20,7 @@ export default function FlashcardForm({
 
   const [nativeWord, setNativeWord] = useState("");
   const [translatedWord, setTranslatedWord] = useState("");
+  const [exampleSentence, setExampleSentence] = useState("");
   const [category, setCategory] = useState<TWordCategory>("Autre");
   const [showSelect, setShowSelect] = useState(false);
 
@@ -32,9 +30,11 @@ export default function FlashcardForm({
       translatedWord,
       targetLanguages: languageCode,
       category,
+      exampleSentence,
     });
     setNativeWord("");
     setTranslatedWord("");
+    setExampleSentence("");
     setCategory("Autre");
   };
 
@@ -63,13 +63,27 @@ export default function FlashcardForm({
           {showSelect ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </Button>
         {showSelect && (
-          <Dropdown
-            options={CATEGORIES}
-            value={category}
-            onChange={(selectedCategory) =>
-              setCategory(selectedCategory as TWordCategory)
-            }
-          />
+          <>
+            <p className="underline underline-offset-4">
+              Choisis une catégorie :
+            </p>
+            <Dropdown
+              options={CATEGORIES}
+              value={category}
+              onChange={(selectedCategory) =>
+                setCategory(selectedCategory as TWordCategory)
+              }
+            />
+            <p className="underline underline-offset-4">
+              Ecris une phrase en {learningLanguage.toLowerCase()} pour
+              illustrer ton mot :
+            </p>
+            <Input
+              placeholder="Phrase exemple"
+              value={exampleSentence}
+              onChange={setExampleSentence}
+            />
+          </>
         )}
       </div>
       <Button variant="submit" onClick={handleCreate}>

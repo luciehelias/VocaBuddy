@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/components/ui/Button";
-import Dropdown from "@/components/ui/Dropdown";
+import { Button, Dropdown } from "@/ui";
 import { LANGUAGES } from "@/const/languages";
 import { getExcludedLanguageNames } from "@/utils/language";
 import { CirclePlus } from "lucide-react";
