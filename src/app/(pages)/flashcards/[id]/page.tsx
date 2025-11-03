@@ -28,7 +28,7 @@ export default function ManageFlashcards({
   useEffect(() => {
     async function loadUserFlashcards() {
       try {
-        const res = await fetch("/api/user");
+        const res = await fetch("/api/flashcards");
         if (!res.ok)
           throw new Error("Erreur lors du chargement de l'utilisateur");
 
