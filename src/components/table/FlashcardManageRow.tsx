@@ -1,21 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../ui/Button";
 
-type ManageFlashcardRowProps = {
+type FlashcardManageRowProps = {
   id: string;
   nativeWord: string;
   translatedWord: string;
   onDelete?: () => void;
 };
 
-export default function ManageFlashcardRow({
+export default function FlashcardManageRow({
   id,
   nativeWord: initialNativeWord,
   translatedWord: initialTranslatedWord,
   onDelete,
-}: ManageFlashcardRowProps) {
+}: FlashcardManageRowProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [nativeWord, setNativeWord] = useState(initialNativeWord);
   const [translatedWord, setTranslatedWord] = useState(initialTranslatedWord);

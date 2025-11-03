@@ -1,13 +1,12 @@
 "use client";
 
-import { Title, Button, ManageFlashcardRow } from "@/ui";
+import React, { useEffect, useState } from "react";
+
+import { Title, LinkButton } from "@/ui";
+import { HeaderFlashcardManageRow, FlashcardManageRow } from "@/table";
 import { LANGUAGES } from "@/const/languages";
 import { useUserData } from "@/contexts/userContext";
 import { TFlashcard } from "@/types/flashcard";
-import { ArrowBigRight } from "lucide-react";
-import Link from "next/link";
-
-import React, { useEffect, useState } from "react";
 
 export default function ManageFlashcards({
   params,
@@ -58,34 +57,16 @@ export default function ManageFlashcards({
     <div className="flex flex-col h-screen gap-8 w-full max-w-[1000px] m-auto">
       <Title>Gérer votre vocabulaire</Title>
       <div className="flex flex-col gap-2 w-full mt-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 w-full p-4 rounded  sticky top-0 z-10">
-          <div className="flex gap-8 w-full">
-            <p className="flex gap-2 items-center w-1/2">
-              <img
-                src={nativeLanguageFlagUrl}
-                className="w-6 h-6 object-contain flag"
-              />
-              <strong>Mot natif</strong>
-            </p>
-            <p className="flex gap-2 items-center w-1/2">
-              <img
-                src={targetLanguageFlagUrl}
-                className="w-6 h-6 object-contain flag"
-              />
-              <strong>Mot traduit</strong>
-            </p>
-          </div>
-          <div className="flex gap-4 justify-center items-center md:justify-end w-full">
-            <span className="w-38" />
-            <span className="w-38" />
-          </div>
-        </div>
+        <HeaderFlashcardManageRow
+          nativeLanguageFlagUrl={nativeLanguageFlagUrl}
+          targetLanguageFlagUrl={targetLanguageFlagUrl}
+        />
       </div>
       <div className="flex flex-col gap-2 max-w-[1000px] w-full overflow-y-auto">
         {flashcards
           .filter((fc) => fc.targetLanguages === id)
           .map((fc) => (
-            <ManageFlashcardRow
+            <FlashcardManageRow
               key={fc._id}
               id={fc._id}
               nativeWord={fc.nativeWord}
@@ -97,12 +78,10 @@ export default function ManageFlashcards({
           ))}
       </div>
       <div className="flex justify-center">
-        <Link href={`/language/${id}`}>
-          <Button className="flex items-center gap-2 creation-color--reverse">
-            <ArrowBigRight />
-            <p>Retour page principale</p>
-          </Button>
-        </Link>
+        <LinkButton
+          href={`/language/${id}`}
+          text="Retour vers la page principale"
+        />
       </div>
     </div>
   );

@@ -27,6 +27,7 @@
       "@/models/*": ["src/models/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/ui": ["src/components/ui"],
+      "@/table": ["src/components/table"],
       "@/layout/*": ["src/components/layout/*"],
       "@/services/*": ["src/services/*"],
       "@/data/*": ["src/data/*"],

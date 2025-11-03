@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { getLanguageName } from "@/utils/language";
 import FlashcardForm from "@/components/form/FlashcardForm";
-import { Title } from "@/ui";
-import LinkButton from "@/components/ui/LinkButton";
+import { Title, LinkButton } from "@/ui";
 
 export default async function FlashcardPage({
   params,
