@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/dbconnect";
 import { User } from "@/models/User";
-import { currentUser } from "@clerk/nextjs/server";
+import { getUserFromClerk } from "@/lib/getUserFromClerk";
 
 export async function POST(request: Request) {
   try {
@@ -20,20 +20,10 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const clerkUser = await currentUser();
-    if (!clerkUser) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-    }
+    const user = await getUserFromClerk();
 
     const body = await request.json();
     const { language, isNative, avatarUrl } = body;
-
-    await connectToDatabase();
-
-    const user = await User.findOne({ clerkId: clerkUser.id });
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
 
     if (isNative) {
       user.nativeLanguage = language;
@@ -48,8 +38,15 @@ export async function PATCH(request: Request) {
     await user.save();
 
     return NextResponse.json({ user });
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    if (error.message === "Not authenticated") {
+      return NextResponse.json({ error: error.message }, { status: 401 });
+    }
+
+    if (error.message === "User not found") {
+      return NextResponse.json({ error: error.message }, { status: 404 });
+    }
+
     return NextResponse.json(
       { error: "Failed to update user" },
       { status: 500 }

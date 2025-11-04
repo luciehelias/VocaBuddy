@@ -6,7 +6,8 @@ import { useFlashcards } from "@/hooks/useFlashcard";
 import { useUserData } from "@/contexts/userContext";
 import { CATEGORIES } from "@/const/flashcards";
 import { TWordCategory } from "@/types/category";
-import { Dropdown, Title, LanguageInputWithFlag, Input, Button } from "@/ui";
+import { Dropdown, Title, Input, Button } from "@/ui";
+import LanguageInputWithFlag from "@/components/form/LanguageInputWithFlag";
 
 export default function FlashcardForm({
   languageCode,

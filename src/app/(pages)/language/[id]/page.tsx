@@ -1,6 +1,5 @@
 import ActionCard from "@/components/card/ActionCard";
-import { Title } from "@/ui";
-import LinkButton from "@/components/ui/LinkButton";
+import { Title, LinkButton } from "@/ui";
 import { COLORS } from "@/const/ui";
 import { getLanguageName } from "@/utils/language";
 import { Dumbbell, BicepsFlexed, Lightbulb } from "lucide-react";

@@ -30,6 +30,7 @@ export interface IUserDB extends Document {
     theme: "light" | "dark";
     notifications: boolean;
   };
+  flashcards?: ObjectId[];
 }
 
 // User interface response from MongoDB
