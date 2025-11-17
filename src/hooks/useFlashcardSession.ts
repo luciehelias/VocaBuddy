@@ -33,6 +33,9 @@ export function useFlashcardSession(
   };
 
   const handleCheckAnswer = () => {
+    if (!answer || !answer.trim()) {
+      return;
+    }
     const correct =
       answer.trim().toLowerCase() ===
       currentCard.translatedWord.trim().toLowerCase();

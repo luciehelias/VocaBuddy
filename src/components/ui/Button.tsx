@@ -1,4 +1,4 @@
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?:
     | "auth"
     | "primary"
@@ -8,6 +8,8 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     | "delete"
     | "edit"
     | "cancel"
+    | "flashcardSeeAnswer"
+    | "flashcardRetryAnwser"
     | "save";
   className?: string;
 };
@@ -15,16 +17,21 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function Button({
   children,
   variant = "primary",
+  disabled,
   className = "",
   ...props
 }: ButtonProps) {
-  const baseStyle = "p-2 cursor-pointer";
+  const baseStyle = "p-2";
 
   const variants = {
     auth: "border-2 uppercase text-sm w-38 rounded-md hover:bg-black hover:text-white",
     primary: "border-2 uppercase rounded-xl",
     submit:
       "border-2 bg-emerald-200 w-full uppercase rounded-xl hover:bg-emerald-300 ",
+    flashcardSeeAnswer:
+      "border-2 bg-orange-200 w-full uppercase rounded-xl hover:bg-orange-300 ",
+    flashcardRetryAnwser:
+      "border-2 bg-red-300 w-full uppercase rounded-xl hover:bg-red-400 ",
     option: "flex justify-center gap-2",
     icon: "border-2 rounded-xl flex flex-col items-center gap-12 min-w-60 p-8 text-white",
     delete:
@@ -35,10 +42,14 @@ export default function Button({
     save: "border-2 bg-emerald-200 w-38 uppercase rounded-xl hover:bg-emerald-300 hover:text-white",
   };
 
+  const disabledStyle = disabled
+    ? "opacity-50 bg-gray-300 hover:bg-gray-300 cursor-not-allowed"
+    : "cursor-pointer";
+
   return (
     <button
       type="button"
-      className={`${baseStyle} ${className} ${variants[variant]}`}
+      className={`${baseStyle} ${disabledStyle} ${className} ${variants[variant]}`}
       {...props}
     >
       {children}

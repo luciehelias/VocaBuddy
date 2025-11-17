@@ -1,11 +1,19 @@
 import { Button, Input } from "@/ui";
 import { useFlashcardSession } from "@/hooks/useFlashcardSession";
 import { TFlashcard } from "@/types/flashcard";
+import { ButtonProps } from "../ui/Button";
 
 type FlashcardProps = {
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   flashcards: TFlashcard[];
+};
+
+type ButtonConfig = {
+  states: string[];
+  label: string;
+  onClick: () => void;
+  variant?: ButtonProps["variant"];
 };
 
 export default function Flashcard({
@@ -24,28 +32,49 @@ export default function Flashcard({
     handleReloadInput,
   } = useFlashcardSession(flashcards, currentIndex, setCurrentIndex);
 
-  const buttonsConfig = [
+  const buttonsConfig: ButtonConfig[] = [
     {
       states: ["answering"],
-      label: "Vérifier",
+      label: "Vérifier la réponse",
+      variant: "submit",
       onClick: handleCheckAnswer,
     },
-    { states: ["answering"], label: "Voir la réponse", onClick: handleHelp },
-    { states: ["incorrect"], label: "Réessayer", onClick: handleReloadInput },
+    {
+      states: ["answering"],
+      label: "Voir la réponse",
+      variant: "flashcardSeeAnswer",
+      onClick: handleHelp,
+    },
+    {
+      states: ["incorrect"],
+      label: "Je retente ma chance",
+      variant: "flashcardRetryAnwser",
+      onClick: handleReloadInput,
+    },
     {
       states: ["correct", "help-shown"],
-      label: "Carte suivante",
+      label: "Passer à la flashcard suivante",
+      variant: "submit",
       onClick: handleNext,
     },
   ];
 
   const renderedButtons = buttonsConfig
     .filter((b) => b.states.includes(state))
-    .map((b) => (
-      <Button key={b.label} onClick={b.onClick}>
-        {b.label}
-      </Button>
-    ));
+    .map((b) => {
+      const isDisabled = b.label === "Vérifier la réponse" && !answer.trim();
+
+      return (
+        <Button
+          key={b.label}
+          onClick={b.onClick}
+          disabled={isDisabled}
+          variant={b.variant}
+        >
+          {b.label}
+        </Button>
+      );
+    });
 
   return (
     <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-6 justify-between text-center w-full max-w-md h-[300px]">
@@ -76,10 +105,12 @@ export default function Flashcard({
         )}
 
         {state === "incorrect" && (
-          <p className="text-red-500">❌ Mauvaise réponse, réessaie !</p>
+          <p className="text-red-500">
+            ❌ Ce n'est pas la bonne réponse, réessaie !
+          </p>
         )}
       </>
-      <div className="flex gap-16 justify-center w-full">{renderedButtons}</div>
+      <div className="flex gap-4 justify-center w-full">{renderedButtons}</div>
     </div>
   );
 }
