@@ -1,4 +1,5 @@
 import { TFlashcard } from "@/types/flashcard";
+import { useRouter } from "next/navigation";
 import { useState, useCallback, useMemo } from "react";
 
 export type FlashcardState =
@@ -10,8 +11,11 @@ export type FlashcardState =
 export function useFlashcardSession(
   flashcards: TFlashcard[],
   currentIndex: number,
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>,
+  id: string
 ) {
+  const router = useRouter();
+
   const currentCard = useMemo(
     () => flashcards[currentIndex],
     [flashcards, currentIndex]
@@ -57,6 +61,10 @@ export function useFlashcardSession(
     setCurrentIndex((prev) => (prev + 1) % flashcards.length);
   }, [flashcards.length, setCurrentIndex]);
 
+  const handleFinish = () => {
+    router.push(`/language/${id}`);
+  };
+
   return {
     currentCard,
     answer,
@@ -66,5 +74,6 @@ export function useFlashcardSession(
     handleHelp,
     handleNext,
     handleReloadInput,
+    handleFinish,
   };
 }

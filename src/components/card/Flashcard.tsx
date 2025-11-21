@@ -36,7 +36,8 @@ export default function Flashcard({
     handleHelp,
     handleNext,
     handleReloadInput,
-  } = useFlashcardSession(flashcards, currentIndex, setCurrentIndex);
+    handleFinish,
+  } = useFlashcardSession(flashcards, currentIndex, setCurrentIndex, id);
 
   const buttonsConfig: ButtonConfig[] = [
     {
@@ -59,9 +60,13 @@ export default function Flashcard({
     },
     {
       states: ["correct", "help-shown"],
-      label: "Passer à la flashcard suivante",
+      label:
+        currentIndex === flashcards.length - 1
+          ? "Terminer la session"
+          : "Passer à la flashcard suivante",
       variant: "submit",
-      onClick: handleNext,
+      onClick:
+        currentIndex === flashcards.length - 1 ? handleFinish : handleNext,
     },
   ];
 
