@@ -2,11 +2,15 @@ import { Button, Input } from "@/ui";
 import { useFlashcardSession } from "@/hooks/useFlashcardSession";
 import { TFlashcard } from "@/types/flashcard";
 import { ButtonProps } from "../ui/Button";
+import { FeedbackMessage } from "./FlashcardMessage";
+import Image from "next/image";
 
 type FlashcardProps = {
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   flashcards: TFlashcard[];
+  language: string;
+  id: string;
 };
 
 type ButtonConfig = {
@@ -20,6 +24,8 @@ export default function Flashcard({
   currentIndex,
   setCurrentIndex,
   flashcards,
+  language,
+  id,
 }: FlashcardProps) {
   const {
     currentCard,
@@ -77,25 +83,19 @@ export default function Flashcard({
     });
 
   return (
-    <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col gap-6 justify-between text-center w-full max-w-md h-[300px]">
+    <div className="bg-white p-8 rounded-3xl shadow-lg flex flex-col justify-between text-center w-full max-w-md h-[300px]">
       <p className="text-xl font-semibold">
         Mot à traduire : <strong>{currentCard.nativeWord}</strong>
       </p>
-
-      {state === "correct" && (
-        <p className="text-green-600">
-          🎉 Bravo ! La bonne réponse était :{" "}
-          <strong>{currentCard.translatedWord}</strong>
-        </p>
-      )}
-
-      {state === "help-shown" && (
-        <p className="text-green-600">
-          La réponse est : <strong>{currentCard.translatedWord}</strong>
-        </p>
-      )}
-
-      <>
+      <div className="flex items-center justify-center gap-4">
+        {state === "answering" && (
+          <Image
+            src={`/assets/flags/${id}.png`}
+            alt={`Drapeau de ${language}`}
+            width={30}
+            height={30}
+          />
+        )}
         {state === "answering" && (
           <Input
             placeholder="Écris la traduction ici"
@@ -103,13 +103,11 @@ export default function Flashcard({
             onChange={handleAnswer}
           />
         )}
-
-        {state === "incorrect" && (
-          <p className="text-red-500">
-            ❌ Ce n'est pas la bonne réponse, réessaie !
-          </p>
-        )}
-      </>
+        <FeedbackMessage
+          state={state}
+          translatedWord={currentCard.translatedWord}
+        />
+      </div>
       <div className="flex gap-4 justify-center w-full">{renderedButtons}</div>
     </div>
   );

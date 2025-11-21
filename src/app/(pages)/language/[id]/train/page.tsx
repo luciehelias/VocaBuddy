@@ -48,17 +48,25 @@ export default function TrainPage({
     return <p>Aucune flashcard trouvée pour la langue {language}.</p>;
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      <Title variant="sm">
-        Entraînement en {language.toLowerCase()} — carte {currentIndex + 1} /{" "}
-        {flashcards.length}
-      </Title>
-
+    <div className="flex flex-col items-center gap-6 w-[900px]">
+      <Title variant="md">Entraînement en {language.toLowerCase()}</Title>
       <Flashcard
         setCurrentIndex={setCurrentIndex}
         currentIndex={currentIndex}
         flashcards={flashcards}
+        language={language}
+        id={id}
       />
+      <div className="flex gap-12">
+        <p>
+          Carte n° {""}
+          <span className="font-bold">{currentIndex + 1}</span>
+        </p>
+        <p>
+          Nombre de cartes restantes :{" "}
+          <span className="font-bold">{flashcards.length}</span>
+        </p>
+      </div>
     </div>
   );
 }
