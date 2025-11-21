@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getLanguageName } from "@/utils/language";
-import { Title } from "@/ui";
+import { LinkButton, Title } from "@/ui";
 import { TFlashcard } from "@/types/flashcard";
 import Flashcard from "@/components/card/Flashcard";
 
@@ -57,7 +57,7 @@ export default function TrainPage({
         language={language}
         id={id}
       />
-      <div className="flex gap-12">
+      <div className="flex gap-12 mb-10">
         <p>
           Carte n° {""}
           <span className="font-bold">{currentIndex + 1}</span>
@@ -67,6 +67,10 @@ export default function TrainPage({
           <span className="font-bold">{flashcards.length}</span>
         </p>
       </div>
+      <LinkButton
+        href={`/language/${id}`}
+        text="Retour vers la page principale"
+      />
     </div>
   );
 }
