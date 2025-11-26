@@ -42,7 +42,7 @@ export default async function LanguageMenu({
         <li>
           <ActionCard href={`/language/${id}/test`} type="test">
             <BicepsFlexed size={64} color={COLORS.test} />
-            <span className="font-bold">Mode Révision</span>
+            <span className="font-bold">Mode Examen</span>
           </ActionCard>
         </li>
       </ul>
