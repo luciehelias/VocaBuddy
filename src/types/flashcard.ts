@@ -12,4 +12,10 @@ export type TFlashcard = {
   knowledgeScore: number;
   createdAt: string;
   updatedAt: string;
-}
+};
+
+export type FlashcardState =
+  | "answering"
+  | "correct"
+  | "incorrect"
+  | "help-shown";
