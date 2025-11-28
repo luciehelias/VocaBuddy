@@ -94,19 +94,19 @@ export default function Flashcard({
       </p>
       <div className="flex items-center justify-center gap-4">
         {state === "answering" && (
-          <Image
-            src={`/assets/flags/${id}.png`}
-            alt={`Drapeau de ${language}`}
-            width={30}
-            height={30}
-          />
-        )}
-        {state === "answering" && (
-          <Input
-            placeholder="Écris la traduction ici"
-            value={answer}
-            onChange={handleAnswer}
-          />
+          <>
+            <Image
+              src={`/assets/flags/${id}.png`}
+              alt={`Drapeau de ${language}`}
+              width={30}
+              height={30}
+            />
+            <Input
+              placeholder="Écris la traduction ici"
+              value={answer}
+              onChange={handleAnswer}
+            />
+          </>
         )}
         <FeedbackMessage
           state={state}
