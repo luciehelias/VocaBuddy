@@ -11,7 +11,7 @@ function ExampleSentence({ sentence }: { sentence?: string }) {
   return <p className="text-gray-600 italic">Exemple : {sentence}</p>;
 }
 
-export function FeedbackMessage({
+export function FlashcardMessage({
   state,
   translatedWord,
   exampleSentence,

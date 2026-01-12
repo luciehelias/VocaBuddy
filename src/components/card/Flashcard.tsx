@@ -2,7 +2,7 @@ import { Button, Input } from "@/ui";
 import { useFlashcardSession } from "@/hooks/useFlashcardSession";
 import { TFlashcard } from "@/types/flashcard";
 import { ButtonProps } from "../ui/Button";
-import { FeedbackMessage } from "./FlashcardMessage";
+import { FlashcardMessage } from "./FlashcardMessage";
 import Image from "next/image";
 
 type FlashcardProps = {
@@ -108,7 +108,7 @@ export default function Flashcard({
             />
           </>
         )}
-        <FeedbackMessage
+        <FlashcardMessage
           state={state}
           translatedWord={currentCard.translatedWord}
           exampleSentence={currentCard.exampleSentence}
