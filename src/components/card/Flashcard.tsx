@@ -2,7 +2,7 @@ import { Button, Input } from "@/ui";
 import { useFlashcardSession } from "@/hooks/useFlashcardSession";
 import { TFlashcard } from "@/types/flashcard";
 import { ButtonProps } from "../ui/Button";
-import { FeedbackMessage } from "./FlashcardMessage";
+import { FlashcardMessage } from "./FlashcardMessage";
 import Image from "next/image";
 
 type FlashcardProps = {
@@ -33,7 +33,7 @@ export default function Flashcard({
     state,
     handleAnswer,
     handleCheckAnswer,
-    handleHelp,
+    handleRevealAnswer,
     handleNext,
     handleReloadInput,
     handleFinish,
@@ -42,15 +42,15 @@ export default function Flashcard({
   const buttonsConfig: ButtonConfig[] = [
     {
       states: ["answering"],
-      label: "Vérifier la réponse",
-      variant: "submit",
-      onClick: handleCheckAnswer,
+      label: "Voir la réponse",
+      variant: "flashcardSeeAnswer",
+      onClick: handleRevealAnswer,
     },
     {
       states: ["answering"],
-      label: "Voir la réponse",
-      variant: "flashcardSeeAnswer",
-      onClick: handleHelp,
+      label: "Vérifier la réponse",
+      variant: "submit",
+      onClick: handleCheckAnswer,
     },
     {
       states: ["incorrect"],
@@ -59,7 +59,7 @@ export default function Flashcard({
       onClick: handleReloadInput,
     },
     {
-      states: ["correct", "help-shown"],
+      states: ["correct", "answer-revealed"],
       label:
         currentIndex === flashcards.length - 1
           ? "Terminer la session"
@@ -108,9 +108,10 @@ export default function Flashcard({
             />
           </>
         )}
-        <FeedbackMessage
+        <FlashcardMessage
           state={state}
           translatedWord={currentCard.translatedWord}
+          exampleSentence={currentCard.exampleSentence}
         />
       </div>
       <div className="flex gap-4 justify-center w-full">{renderedButtons}</div>

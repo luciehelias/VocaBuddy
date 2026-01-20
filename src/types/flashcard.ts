@@ -18,4 +18,4 @@ export type FlashcardState =
   | "answering"
   | "correct"
   | "incorrect"
-  | "help-shown";
+  | "answer-revealed";

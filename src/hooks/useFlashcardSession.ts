@@ -1,12 +1,6 @@
-import { TFlashcard } from "@/types/flashcard";
+import { TFlashcard, FlashcardState } from "@/types/flashcard";
 import { useRouter } from "next/navigation";
 import { useState, useCallback, useMemo } from "react";
-
-export type FlashcardState =
-  | "answering"
-  | "correct"
-  | "incorrect"
-  | "help-shown";
 
 export function useFlashcardSession(
   flashcards: TFlashcard[],
@@ -51,8 +45,8 @@ export function useFlashcardSession(
     }
   };
 
-  const handleHelp = () => {
-    setState("help-shown");
+  const handleRevealAnswer = () => {
+    setState("answer-revealed");
   };
 
   const handleNext = useCallback(() => {
@@ -71,7 +65,7 @@ export function useFlashcardSession(
     state,
     handleAnswer,
     handleCheckAnswer,
-    handleHelp,
+    handleRevealAnswer,
     handleNext,
     handleReloadInput,
     handleFinish,

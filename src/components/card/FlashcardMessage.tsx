@@ -3,22 +3,39 @@ import { FlashcardState } from "@/types/flashcard";
 type FeedbackProps = {
   state: FlashcardState;
   translatedWord: string;
+  exampleSentence?: string;
 };
 
-export function FeedbackMessage({ state, translatedWord }: FeedbackProps) {
+function ExampleSentence({ sentence }: { sentence?: string }) {
+  if (!sentence) return null;
+  return <p className="text-gray-600 italic">Exemple : {sentence}</p>;
+}
+
+export function FlashcardMessage({
+  state,
+  translatedWord,
+  exampleSentence,
+}: FeedbackProps) {
   switch (state) {
     case "correct":
       return (
-        <p className="text-green-600">
-          🎉 Bravo ! La bonne réponse était : <strong>{translatedWord}</strong>
-        </p>
+        <div className="flex flex-col gap-4">
+          <p className="text-green-600">
+            🎉 Bravo ! La bonne réponse était :{" "}
+            <strong>{translatedWord}</strong>
+          </p>
+          <ExampleSentence sentence={exampleSentence} />
+        </div>
       );
 
-    case "help-shown":
+    case "answer-revealed":
       return (
-        <p className="text-green-600">
-          La réponse est : <strong>{translatedWord}</strong>
-        </p>
+        <div className="flex flex-col gap-4">
+          <p className="text-green-600">
+            La réponse est : <strong>{translatedWord}</strong>
+          </p>
+          <ExampleSentence sentence={exampleSentence} />
+        </div>
       );
 
     case "incorrect":
